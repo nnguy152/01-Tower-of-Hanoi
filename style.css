@@ -1,0 +1,35 @@
+body {
+  background: black;
+  color: white;
+  text-align: center;
+  font-family: 'Nova Flat', cursive;
+  font-size: 30px;
+}
+.towercontainer {
+  display: flex;
+  justify-content: center;
+  height: 250px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid white;
+  height: 250px;
+  width: 200px;
+}
+.block {
+  background: white;
+  height: 40px;
+}
+.first {
+  width: 50px;
+}
+.second {
+  width: 100px;
+}
+.third {
+  width: 150px;
+}
