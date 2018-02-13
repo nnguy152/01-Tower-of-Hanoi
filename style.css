@@ -5,12 +5,14 @@ body {
   font-family: 'Nova Flat', cursive;
   font-size: 30px;
 }
+img {
+  width: 30px;
+}
 .towercontainer {
   display: flex;
   justify-content: center;
   height: 250px;
 }
-
 .container {
   display: flex;
   justify-content: flex-end;
@@ -18,18 +20,48 @@ body {
   flex-direction: column;
   border: 2px solid white;
   height: 250px;
-  width: 200px;
+  width: 250px;
 }
 .block {
-  background: white;
-  height: 40px;
+  /* background: white; */
+  /* height: 40px; */
+  margin: -10px;
 }
-.first {
+.first img {
+  height: 40px;
   width: 50px;
 }
-.second {
+.second img {
+  height: 40px;
   width: 100px;
 }
-.third {
+.third img {
+  height: 40px;
   width: 150px;
+}
+.fourth img {
+  height: 40px;
+  width: 200px;
+}
+.fifth img {
+  height: 40px;
+  width: 250px;
+}
+.moves, .instructions {
+  margin: 20px 30px;
+  width: 200px;
+  margin: 10px 30px 10px 10px;
+}
+.instructions {
+  text-align: left;
+  font-size: 20px;
+  padding-right: 15px;
+}
+.rules {
+  margin: 20px;
+  font-size: 15px;
+  text-align: center;
+  float: left;
+  border: 2px solid white;
+  max-width: 200px;
 }

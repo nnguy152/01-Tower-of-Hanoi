@@ -10,20 +10,32 @@
 </head>
 <body>
   <h1>Tower of Hanoi</h1>
-
+  
   <div class="towercontainer">
-    <div class="container one">
-      <div class="first block" draggable="true">1</div>
-      <div class="second block" draggable="true">2</div>
-      <div class="third block" draggable="true">3</div>
+    <div class="instructions">
+      <div>Objective: Move blocks from left box to right box. Click the box to select the top block, then click the box you want to place it in.</div>
     </div>
+    
+    <div class="container one">
+      <div class="first block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+      <div class="second block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+      <div class="third block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+      <div class="fourth block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+      <div class="fifth block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+    </div>
+
     <div class="container two"></div>
     <div class="container three"></div>
+    <div class="moves">Moves: 0</div>
   </div>
-  <div class="moves">0</div>
+
+  <div class="rules">
+    <div>Rule 1: Move one block at a time.</div>
+    <div>Rule 2: Bigger blocks cannot go on top of smaller blocks.</div>
+    <div>Rule 3: You can if you want but... it's wrong. >_> </div>
+  </div>
 
   <!-- <script src="script.js"></script> -->
   <script src="newscript.js"></script>
-
 </body>
 </html>
