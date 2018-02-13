@@ -32,6 +32,7 @@ function startGame () {
     })
   }
 }
+
 function startPart2 () {
  if (clicked) {
   container1.addEventListener('click', () => {

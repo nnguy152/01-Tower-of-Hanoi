@@ -10,29 +10,37 @@
 </head>
 <body>
   <h1>Tower of Hanoi</h1>
+  <button class="meow" >Meow</button>
   
   <div class="towercontainer">
     <div class="instructions">
-      <div>Objective: Move blocks from left box to right box. Click the box to select the top block, then click the box you want to place it in.</div>
+      <div id="objective">-Objective-</div> 
+      <div>Move blocks from left box to right box. Click the box to select the top block, then click the box you want to place it in.</div>
     </div>
     
     <div class="container one">
-      <div class="first block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
-      <div class="second block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
-      <div class="third block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
-      <div class="fourth block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
-      <div class="fifth block"><img src="https://media.giphy.com/media/CLDV8fAHRN5Fm/giphy.gif"></div>
+      <div id="first" class="block"></div>
+      <div id="second" class="block"></div>
+      <div id="third" class="block"></div>
+      <div id="fourth" class="block"></div>
+      <div id="fifth" class="block"></div>
     </div>
 
     <div class="container two"></div>
     <div class="container three"></div>
-    <div class="moves">Moves: 0</div>
+    <div>
+      <div class="moves">Moves: 0</div>
+      <button class="button">Win: 0</button>
+    </div>
   </div>
 
   <div class="rules">
-    <div>Rule 1: Move one block at a time.</div>
-    <div>Rule 2: Bigger blocks cannot go on top of smaller blocks.</div>
-    <div>Rule 3: You can if you want but... it's wrong. >_> </div>
+    <div>
+      <div id="Rules">-Rules-</div>
+      <div>Move one block at a time.</div>
+      <div>Bigger blocks cannot go on top of smaller blocks.</div>
+      <div>Well... they can but... honor system.</div>
+    </div>
   </div>
 
   <!-- <script src="script.js"></script> -->

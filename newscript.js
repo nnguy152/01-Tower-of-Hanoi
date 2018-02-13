@@ -9,6 +9,9 @@ var start = null
 // stores total moves
 var movesStart = 0
 var moves = document.querySelector('.moves')
+// some silly code
+var winCounter = 0
+var button = document.querySelector('.button')
 
 // starts game upon page load
 document.onload = startGame()
@@ -133,3 +136,37 @@ function trackMoves () {
   moves.innerHTML = `Moves: ${movesStart}`
   startGame()
 }
+
+// some silly code
+button.onclick = () => {
+  winCounter += 1
+  button.innerHTML = `Wins: ${winCounter}`
+  if (winCounter === 10) {
+    alert(`...you're not just clicking the button for fun, are you?`)
+  }
+  if (winCounter === 20) {
+    alert(`Yeah, you definitely a cheater. Who else would play this many times??`)
+  }
+}
+
+var blocks = document.querySelectorAll('.block')
+console.log(blocks[1].style)
+var meow = document.querySelector('.meow')
+meow.addEventListener('click', () => {
+  for (var i = 0; i < blocks.length; i++) {
+    // blocks[i].style.background = "url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934') top"
+    // blocks[i].style.backgroundSize = '200px'
+    blocks[i].classList.add('cat')
+  }
+})
+
+
+// var body = document.querySelector('body')
+// for (var i = 0; i < 8000; i++) {
+//   let squares = document.createElement('DIV')
+//   squares.classList.add('square')
+//   body.appendChild(squares)
+//   squares.addEventListener('mouseover', () => {
+//     squares.style.background = color.value
+//   })
+// }

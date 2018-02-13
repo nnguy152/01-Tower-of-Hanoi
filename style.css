@@ -1,9 +1,13 @@
-body {
+body, button {
   background: black;
   color: white;
   text-align: center;
   font-family: 'Nova Flat', cursive;
   font-size: 30px;
+  border: none;
+}
+#objective {
+  text-align: center;
 }
 img {
   width: 30px;
@@ -23,29 +27,28 @@ img {
   width: 250px;
 }
 .block {
-  /* background: white; */
-  /* height: 40px; */
-  margin: -10px;
-}
-.first img {
+  background: white;
   height: 40px;
+}
+#first, .cat {
   width: 50px;
+  background-size: 50px;
 }
-.second img {
-  height: 40px;
+#second, .cat {
   width: 100px;
+  background-size: 50px;
 }
-.third img {
-  height: 40px;
+#third, .cat {
   width: 150px;
+  background-size: 50px;
 }
-.fourth img {
-  height: 40px;
+#fourth, .cat{
   width: 200px;
+  background-size: 50px;
 }
-.fifth img {
-  height: 40px;
+#fifth, .cat {
   width: 250px;
+  background-size: 50px;
 }
 .moves, .instructions {
   margin: 20px 30px;
@@ -60,8 +63,11 @@ img {
 .rules {
   margin: 20px;
   font-size: 15px;
-  text-align: center;
-  float: left;
-  border: 2px solid white;
-  max-width: 200px;
+  
+}
+#rules {
+  text-decoration: underline 1px;
+}
+.cat {
+  background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
 }
