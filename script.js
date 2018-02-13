@@ -24,9 +24,9 @@ function startGame () {
   if (clicked === true) {
     container1.addEventListener('click', () => {
       selected = container1.firstElementChild
-      console.log(container1.firstElementChild)
       start = container1
       console.log('selected start 1')
+      console.log(selected)
       clicked = false
       selectDestination()
     })
@@ -34,19 +34,27 @@ function startGame () {
 }
 function startPart2 () {
  if (clicked) {
+  container1.addEventListener('click', () => {
+    selected = container1.firstElementChild
+    start = container1
+    console.log('selected second start 1')
+    console.log(selected)
+    clicked = false
+    selectDestination()
+  })
   container2.addEventListener('click', () => {
     selected = container2.firstElementChild
-      console.log(container2.firstElementChild)
     start = container2
       console.log('selected start 2')
+      console.log(selected)
     clicked = false
     selectDestination()
   })
   container3.addEventListener('click', () => {
     selected = container3.firstElementChild
-      console.log(container3.firstElementChild)
     start = container3
       console.log('selected start 3')
+      console.log(selected)
     clicked = false
     selectDestination()
   })
@@ -65,40 +73,53 @@ function selectDestination () {
     if (clicked2 === true) {
       container2.addEventListener('click', () => {
         destination = container2
+        console.log('selected destination 12')
+        console.log(destination)
         compare()
         clicked2 = false
       })
       container3.addEventListener('click', () => {
         destination = container3
+        console.log('selected destination 13')
+        console.log(destination)
         compare()
         clicked2 = false
       })
     }
   } else if (start === container2) {
-    container1.addEventListener('click', () => {
-      destination = container1
-      compare()
-      clicked2 = false
-    })
-    container3.addEventListener('click', () => {
-      destination = container3
-      console.log('selected destination 3')
-      compare()
-      clicked2 = false
-    })
+    if (clicked2 === true) {
+      container1.addEventListener('click', () => {
+        destination = container1
+        console.log('selected destination 21')
+        console.log(destination)
+        compare()
+        clicked2 = false
+      })
+      container3.addEventListener('click', () => {
+        destination = container3
+        console.log('selected destination 23')
+        console.log(destination)
+        compare()
+        clicked2 = false
+      })
+    }
   } else if (start === container3) {
-    container1.addEventListener('click', () => {
-      destination = container1
-      console.log('selected destination 1')
-      compare()
-      clicked2 = false
-    })
-    container2.addEventListener('click', () => {
-      destination = container2
-      console.log('selected destination 2')
-      compare()
-      clicked2 = false
-    })
+    if (clicked2 === true) {
+      container1.addEventListener('click', () => {
+        destination = container1
+        console.log('selected destination 31')
+        console.log(destination)
+        compare()
+        clicked2 = false
+      })
+      container2.addEventListener('click', () => {
+        destination = container2
+        console.log('selected destination 32')
+        console.log(destination)
+        compare()
+        clicked2 = false
+      })
+    }
   }
 }
 
@@ -109,36 +130,39 @@ function selectDestination () {
 function compare () {
   if (destination.hasChildNodes() === true) {
     if (selected.offsetWidth < destination.firstChild.offsetWidth) {
-      addChild()
+      addChildOnTop()
+      console.log('child nodes' + selected.offsetWidth)
+      console.log('desti child nodes' + destination.firstChild.offsetWidth)
       startPart2()
     } else {
       startGame()
-        console.log('no')
+        console.log(container1)
         console.log(selected) //why it only saves the last child from original parent container
     }
   } else {
-    addChildFirst()
+    console.log('no child here')
+    addChild()
     startPart2()
   }
 }
 
-function addChild () {
+function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
-  console.log('Yay it worked >_>')
+  console.log('child on Top')
   clicked = true
   clicked2 = true
   console.log(selected)
   trackMoves()
 }
 
-function addChildFirst () {
+function addChild () {
   start.removeChild(selected)
       console.log(start)
       console.log(selected)
   destination.appendChild(selected)
       console.log(destination)
-      console.log('Yay it worked without children >_>')
+      console.log('just put in END@@@@@@@@')
   clicked = true
   clicked2 = true
   trackMoves()
