@@ -171,3 +171,8 @@ hardMode.addEventListener('click', () => {
   document.querySelector('.rules').innerHTML = 'Once you go black...'
   document.querySelector('.button').style.visibility = 'hidden'
 })
+var scary = document.querySelector('.scary')
+scary.addEventListener('click', () => {
+  document.body.style.visibility = 'hidden'
+  document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
+})

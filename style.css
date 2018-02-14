@@ -74,12 +74,8 @@ img {
 .cat {
   background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
 }
-.meow, .hardmode {
+.meow, .hardmode, .scary {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
-}
-.blank {
-  font-size: 18px;
-  color: white;
 }
