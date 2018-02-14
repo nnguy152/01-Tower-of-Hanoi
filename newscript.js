@@ -146,6 +146,7 @@ function win () {
   }
 }
 
+// win popup text
 function winText () {
   var popup = document.querySelector('.youwin')
   popup.classList.toggle('show')
@@ -155,7 +156,7 @@ function winText () {
   })
 }
 
-// resets game/move counter
+// resets game/move counter and restarts game
 var block1 = document.querySelector('#first')
 var block2 = document.querySelector('#second')
 var block3 = document.querySelector('#third')
@@ -176,14 +177,43 @@ function resetGame () {
 }
 
 // all below is just some silly code
+// pressing win ups win count but window alerts asking if they cheating
+var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
   if (winCounter === 10) {
-    alert(`...you're not just clicking the button for fun, are you?`)
+    // alert(`...you're not just clicking the button for fun, are you?`)
+    popupCheat.classList.toggle('show1')
   }
   if (winCounter === 20) {
-    alert(`Yeah, you definitely a cheater. Who else would play this many times??`)
+    popupCheat.innerHTML = `Really? You're still here?`
+  }
+  if (winCounter === 30) {
+    popupCheat.innerHTML = `Stop clicking!!`
+  }
+  if (winCounter === 35) {
+    popupCheat.innerHTML = `Seriously?`
+  }
+  if (winCounter === 38) {
+    popupCheat.innerHTML = `Stop!!`
+  }
+  if (winCounter === 45) {
+    popupCheat.innerHTML = `...`
+  }
+  if (winCounter === 55) {
+    popupCheat.innerHTML = `I'm warning you...`
+  }
+  if (winCounter === 70) {
+    popupCheat.innerHTML = `OK.`
+  }
+  if (winCounter === 75) {
+    popupCheat.innerHTML = `FINE.`
+  }
+  if (winCounter === 80) {
+    document.body.style.visibility = 'hidden'
+    popupCheat.innerHTML = `You broke the game. -_-`
+    document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
   }
 }
 
@@ -191,10 +221,14 @@ var h1 = document.querySelector('h1')
 var instructions = document.querySelector('.instructions')
 var rules = document.querySelector('.rules')
 var blocks = document.querySelectorAll('.block')
+// meow mode
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
     blocks[i].classList.add('cat')
+    document.body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundSize = '400px'
     h1.innerHTML = 'Meower of Catnoi'
     rules.innerHTML = 'meow meow meow meow meow'
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
@@ -209,6 +243,7 @@ hardMode.addEventListener('click', () => {
   h1.innerHTML = 'Cower in Hardnoi'
   instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
   rules.innerHTML = 'Once you go black...'
+  document.body.style.backgroundImage = 'hidden'
   document.querySelector('.button').style.visibility = 'hidden'
 })
 
@@ -216,4 +251,7 @@ var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
   document.body.style.visibility = 'hidden'
   document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
+  document.body.style.backgroundRepeat = 'no-repeat'
+  document.body.style.backgroundSize = 'stretch'
+  document.body.style.backgroundPosition = 'center'
 })
