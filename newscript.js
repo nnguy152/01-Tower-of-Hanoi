@@ -100,12 +100,11 @@ function compare () {
     compareChildren()
     addChildOnTop()
   } else {
-    console.log(destination.hasChildNodes())
-    console.log('at compare else')
     addChildOnTop()
   }
 }
 
+// broken. Doesn't register width
 function compareChildren () {
   if (selected.width < destination.firstChild.width) {
     addChildOnTop()
@@ -148,6 +147,9 @@ function winText () {
   popup.classList.toggle('show')
   setTimeout(() => {
     popup.innerHTML = 'Play again?'
+    setTimeout(() => {
+      popup.classList.toggle('show')
+    }, 200)
   }, 1500)
   popup.addEventListener('click', () => {
     resetGame()
@@ -177,13 +179,12 @@ function resetGame () {
 
 
 // all below is just some silly code
-// pressing win ups win count but window alerts asking if they cheating
+// pressing win ups win count but ...
 var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
   if (winCounter === 10) {
-    // alert(`...you're not just clicking the button for fun, are you?`)
     popupCheat.classList.toggle('show1')
   }
   if (winCounter === 20) {
@@ -223,6 +224,7 @@ var rules = document.querySelector('.rules')
 var blocks = document.querySelectorAll('.block')
 
 // meow mode
+// changes blocks into stacks of Nyan cats and texts to meows
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
@@ -235,7 +237,9 @@ meow.addEventListener('click', () => {
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
 })
+
 // hard mode
+// makes blocks "hidden," changes text, and automatically increases move counter
 var hardMode = document.querySelector('.hardmode')
 hardMode.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
@@ -257,6 +261,7 @@ hardMode.addEventListener('click', () => {
   }, 900)
 })
 
+// DON'T mode
 var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
   document.querySelector('.button').style.visibility = 'hidden'

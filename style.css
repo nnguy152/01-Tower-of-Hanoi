@@ -32,30 +32,24 @@ img {
 .bg {
   background: white;
 }
-#first, .cat {
+.block, .cat {
   height: 40px;
-  width: 50px;
   background-size: 50px;
+}
+#first, .cat {
+  width: 50px;
 }
 #second, .cat {
-  height: 40px;
   width: 100px;
-  background-size: 50px;
 }
 #third, .cat {
-  height: 40px;
   width: 150px;
-  background-size: 50px;
 }
 #fourth, .cat{
-  height: 40px;
   width: 200px;
-  background-size: 50px;
 }
 #fifth, .cat {
-  height: 40px;
   width: 250px;
-  background-size: 50px;
 }
 .moves, .instructions {
   margin: 20px 30px;
