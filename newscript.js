@@ -149,24 +149,25 @@ button.onclick = () => {
   }
 }
 
+// some more silly code
 var blocks = document.querySelectorAll('.block')
-console.log(blocks[1].style)
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
-    // blocks[i].style.background = "url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934') top"
-    // blocks[i].style.backgroundSize = '200px'
     blocks[i].classList.add('cat')
+    document.querySelector('h1').innerHTML = 'Meower of Catnoi'
+    document.querySelector('.rules').innerHTML = 'meow meow meow meow meow'
+    document.querySelector('.instructions').innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
 })
 
-
-// var body = document.querySelector('body')
-// for (var i = 0; i < 8000; i++) {
-//   let squares = document.createElement('DIV')
-//   squares.classList.add('square')
-//   body.appendChild(squares)
-//   squares.addEventListener('mouseover', () => {
-//     squares.style.background = color.value
-//   })
-// }
+var hardMode = document.querySelector('.hardmode')
+hardMode.addEventListener('click', () => {
+  for (var i = 0; i < blocks.length; i++) {
+    document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
+  }
+  document.querySelector('h1').innerHTML = 'Cower in Hardnoi'
+  document.querySelector('.instructions').innerHTML = 'Objectives: Suffer. Rules: See objective.'
+  document.querySelector('.rules').innerHTML = 'Once you go black...'
+  document.querySelector('.button').style.visibility = 'hidden'
+})

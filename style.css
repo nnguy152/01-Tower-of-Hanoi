@@ -6,6 +6,9 @@ body, button {
   font-size: 30px;
   border: none;
 }
+h1 {
+  margin-bottom: 10px;
+}
 #objective {
   text-align: center;
 }
@@ -26,27 +29,31 @@ img {
   height: 250px;
   width: 250px;
 }
-.block {
+.bg {
   background: white;
-  height: 40px;
 }
 #first, .cat {
+  height: 40px;
   width: 50px;
   background-size: 50px;
 }
 #second, .cat {
+  height: 40px;
   width: 100px;
   background-size: 50px;
 }
 #third, .cat {
+  height: 40px;
   width: 150px;
   background-size: 50px;
 }
 #fourth, .cat{
+  height: 40px;
   width: 200px;
   background-size: 50px;
 }
 #fifth, .cat {
+  height: 40px;
   width: 250px;
   background-size: 50px;
 }
@@ -62,12 +69,17 @@ img {
 }
 .rules {
   margin: 20px;
-  font-size: 15px;
-  
-}
-#rules {
-  text-decoration: underline 1px;
+  font-size: 18px; 
 }
 .cat {
   background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
+}
+.meow, .hardmode {
+  font-size: 15px;
+  text-align: end;
+  margin-bottom: 20px;
+}
+.blank {
+  font-size: 18px;
+  color: white;
 }
