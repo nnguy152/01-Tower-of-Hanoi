@@ -176,6 +176,12 @@ function resetGame () {
   startGame()
 }
 
+
+
+
+
+
+
 // all below is just some silly code
 // pressing win ups win count but window alerts asking if they cheating
 var popupCheat = document.querySelector('.cheating')
@@ -242,15 +248,30 @@ hardMode.addEventListener('click', () => {
   }
   h1.innerHTML = 'Cower in Hardnoi'
   instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
+  document.body.style.backgroundImage = 'none'
   rules.innerHTML = 'Once you go black...'
   document.body.style.backgroundImage = 'hidden'
-  document.querySelector('.button').style.visibility = 'hidden'
+  setInterval(() => {
+    movesStart++
+    moves.innerHTML = `Moves: ${movesStart}`
+  }, 300)
+  setTimeout(() => {
+    winCounter++
+    document.querySelector('.button').style.visibility = 'visible'
+    document.querySelector('.button').innerHTML = `Loss: ${winCounter}`
+  }, 900)
 })
 
 var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
+  document.querySelector('.button').innerHTML = '...'
   document.body.style.visibility = 'hidden'
-  document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
+  setTimeout(() => {
+    document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
+    setTimeout(() => {
+      document.body.style.backgroundImage = 'none'
+    }, 200)
+  }, 2000)
   document.body.style.backgroundRepeat = 'no-repeat'
   document.body.style.backgroundSize = 'stretch'
   document.body.style.backgroundPosition = 'center'
