@@ -134,9 +134,17 @@ function addChild () {
 function trackMoves () {
   movesStart++
   moves.innerHTML = `Moves: ${movesStart}`
-  startGame()
+  win()
 }
-
+function win () {
+  if (container3.childElementCount === 5) {
+    alert('You win!!')
+    winCounter += 1
+    button.innerHTML = `Wins: ${winCounter}`
+  } else {
+    startGame()
+  }
+}
 // some silly code
 button.onclick = () => {
   winCounter += 1
