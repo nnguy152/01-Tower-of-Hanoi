@@ -138,14 +138,44 @@ function trackMoves () {
 }
 function win () {
   if (container3.childElementCount === 5) {
-    alert('You win!!')
+    winText()
     winCounter += 1
     button.innerHTML = `Wins: ${winCounter}`
   } else {
     startGame()
   }
 }
-// some silly code
+
+function winText () {
+  var popup = document.querySelector('.youwin')
+  popup.classList.toggle('show')
+  popup.addEventListener('click', () => {
+    popup.classList.toggle('show')
+    resetGame()
+  })
+}
+
+// resets game/move counter
+var block1 = document.querySelector('#first')
+var block2 = document.querySelector('#second')
+var block3 = document.querySelector('#third')
+var block4 = document.querySelector('#fourth')
+var block5 = document.querySelector('#fifth')
+function resetGame () {
+  if (container3.childElementCount !== 0) {
+    container3.removeChild(container3.firstChild)
+    container1.appendChild(block1)
+    container1.appendChild(block2)
+    container1.appendChild(block3)
+    container1.appendChild(block4)
+    container1.appendChild(block5)
+    movesStart = 0
+    moves.innerHTML = `Moves: 0`
+  }
+  startGame()
+}
+
+// all below is just some silly code
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
@@ -157,15 +187,17 @@ button.onclick = () => {
   }
 }
 
-// some more silly code
+var h1 = document.querySelector('h1')
+var instructions = document.querySelector('.instructions')
+var rules = document.querySelector('.rules')
 var blocks = document.querySelectorAll('.block')
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
     blocks[i].classList.add('cat')
-    document.querySelector('h1').innerHTML = 'Meower of Catnoi'
-    document.querySelector('.rules').innerHTML = 'meow meow meow meow meow'
-    document.querySelector('.instructions').innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
+    h1.innerHTML = 'Meower of Catnoi'
+    rules.innerHTML = 'meow meow meow meow meow'
+    instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
 })
 
@@ -174,11 +206,12 @@ hardMode.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
     document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
   }
-  document.querySelector('h1').innerHTML = 'Cower in Hardnoi'
-  document.querySelector('.instructions').innerHTML = 'Objectives: Suffer. Rules: See objective.'
-  document.querySelector('.rules').innerHTML = 'Once you go black...'
+  h1.innerHTML = 'Cower in Hardnoi'
+  instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
+  rules.innerHTML = 'Once you go black...'
   document.querySelector('.button').style.visibility = 'hidden'
 })
+
 var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
   document.body.style.visibility = 'hidden'
