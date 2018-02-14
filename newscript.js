@@ -64,7 +64,7 @@ function containerThreeClicked () {
   }
 }
 
-// removes Listeners to prevent starting JS from beginning
+// removes Listeners to prevent restarting from beginning
 function removeListener () {
   container1.removeEventListener('click', containerOneClicked)
   container2.removeEventListener('click', containerTwoClicked)
@@ -102,7 +102,7 @@ function compare () {
   } else {
     console.log(destination.hasChildNodes())
     console.log('at compare else')
-    addChild()
+    addChildOnTop()
   }
 }
 
@@ -114,6 +114,7 @@ function compareChildren () {
   }
 }
 
+// adds children in container
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
@@ -122,20 +123,15 @@ function addChildOnTop () {
   selected = null
   trackMoves()
 }
-function addChild () {
-  start.removeChild(selected)
-  destination.appendChild(selected)
-  start = null
-  destination = null
-  selected = null
-  trackMoves()
-}
 
+// increases moves counter when container adds child
 function trackMoves () {
   movesStart++
   moves.innerHTML = `Moves: ${movesStart}`
   win()
 }
+
+// increases win counter when player moves all blocks to container 3
 function win () {
   if (container3.childElementCount === 5) {
     winText()
@@ -147,29 +143,27 @@ function win () {
 }
 
 // win popup text
+var popup = document.querySelector('.youwin')
 function winText () {
-  var popup = document.querySelector('.youwin')
   popup.classList.toggle('show')
+  setTimeout(() => {
+    popup.innerHTML = 'Play again?'
+  }, 1500)
   popup.addEventListener('click', () => {
-    popup.classList.toggle('show')
     resetGame()
   })
 }
 
 // resets game/move counter and restarts game
-var block1 = document.querySelector('#first')
-var block2 = document.querySelector('#second')
-var block3 = document.querySelector('#third')
-var block4 = document.querySelector('#fourth')
-var block5 = document.querySelector('#fifth')
+var block = document.querySelectorAll('.block')
 function resetGame () {
   if (container3.childElementCount !== 0) {
     container3.removeChild(container3.firstChild)
-    container1.appendChild(block1)
-    container1.appendChild(block2)
-    container1.appendChild(block3)
-    container1.appendChild(block4)
-    container1.appendChild(block5)
+    container1.appendChild(block[0])
+    container1.appendChild(block[1])
+    container1.appendChild(block[2])
+    container1.appendChild(block[3])
+    container1.appendChild(block[4])
     movesStart = 0
     moves.innerHTML = `Moves: 0`
   }
@@ -214,7 +208,7 @@ button.onclick = () => {
     popupCheat.innerHTML = `OK.`
   }
   if (winCounter === 75) {
-    popupCheat.innerHTML = `FINE.`
+    popupCheat.innerHTML = `YOU DID THIS.`
   }
   if (winCounter === 80) {
     document.body.style.visibility = 'hidden'
@@ -227,6 +221,7 @@ var h1 = document.querySelector('h1')
 var instructions = document.querySelector('.instructions')
 var rules = document.querySelector('.rules')
 var blocks = document.querySelectorAll('.block')
+
 // meow mode
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
@@ -240,7 +235,7 @@ meow.addEventListener('click', () => {
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
 })
-
+// hard mode
 var hardMode = document.querySelector('.hardmode')
 hardMode.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
@@ -264,15 +259,15 @@ hardMode.addEventListener('click', () => {
 
 var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
-  document.querySelector('.button').innerHTML = '...'
+  document.querySelector('.button').style.visibility = 'hidden'
   document.body.style.visibility = 'hidden'
   setTimeout(() => {
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundSize = 'stretch'
+    document.body.style.backgroundPosition = 'center'
     document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
     setTimeout(() => {
       document.body.style.backgroundImage = 'none'
     }, 200)
   }, 2000)
-  document.body.style.backgroundRepeat = 'no-repeat'
-  document.body.style.backgroundSize = 'stretch'
-  document.body.style.backgroundPosition = 'center'
 })
