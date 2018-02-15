@@ -33,6 +33,7 @@ function addListeners () {
 // changes listener event functions to selectDestination
 function containerOneClicked () {
   selected = container1.firstElementChild
+  selected.style.background = 'red'
   start = container1
   if (start.childElementCount === 0) {
     startGame()
@@ -44,6 +45,7 @@ function containerOneClicked () {
 }
 function containerTwoClicked () {
   selected = container2.firstElementChild
+  selected.style.background = 'red'
   start = container2
   if (start.childElementCount === 0) {
     startGame()
@@ -55,6 +57,7 @@ function containerTwoClicked () {
 }
 function containerThreeClicked () {
   selected = container3.firstElementChild
+  selected.style.background = 'red'
   start = container3
   if (start.childElementCount === 0) {
     startGame()
@@ -146,6 +149,7 @@ function compareChildren () {
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
+  selected.style.background = 'white'
   start = null
   destination = null
   selected = null
@@ -161,7 +165,7 @@ function trackMoves () {
 
 // increases win counter when player moves all blocks to container 3
 function win () {
-  if (container3.childElementCount === 5) {
+  if (container1.childElementCount === 0 && container2.childElementCount === 0) {
     winText()
     winCounter += 1
     button.innerHTML = `Wins: ${winCounter}`
