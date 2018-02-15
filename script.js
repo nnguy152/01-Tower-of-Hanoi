@@ -149,7 +149,7 @@ function compareChildren () {
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
-  selected.style.border = '2px solid white'
+  selected.style.border = 'none'
   start = null
   destination = null
   selected = null
@@ -284,7 +284,7 @@ meow.addEventListener('click', () => {
 // makes blocks "hidden," changes text, and automatically increases move counter
 var hardest = document.querySelector('.hardest')
 hardest.addEventListener('click', () => {
-  for (var i = 0; i < blocks.length; i++) {
+  for (var i = 0; i < block.length; i++) {
     document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
   }
   h1.innerHTML = 'Cower in Hardnoi'
