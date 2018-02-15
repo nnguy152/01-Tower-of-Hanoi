@@ -3,7 +3,8 @@ Tower of Hanoi
 
 Personal take on Tower of Hanoi, a mathematical puzzle/game that consists of three or more blocks in ascending sizes. Users must maneuver the blocks to the far-right container, one at a time, without placing larger blocks on top of smaller ones.
 
-<img src="start" alt="starting screen" />
+![alt tag](https://github.com/nnguy152/01-Tower-of-Hanoi/blob/master/Start%20Screen.png)
+
 
 Features
 ----------------------------
