@@ -170,14 +170,13 @@ function resetGame () {
   startGame()
 }
 
-var easy = document.querySelector('.easy')
-easy.addEventListener('click', () => {
+// switch between easy & hard mode
+document.querySelector('.easy').addEventListener('click', () => {
   container1.removeChild(block[3])
   container1.removeChild(block[4])
 })
 
-var hard = document.querySelector('.hard')
-hard.addEventListener('click', () => {
+document.querySelector('.hard').addEventListener('click', () => {
   container1.appendChild(block[3])
   container1.appendChild(block[4])
 })
@@ -185,7 +184,7 @@ hard.addEventListener('click', () => {
 
 
 // all below is just some silly code
-// pressing win ups win count but ...
+// pressing win increases win count but ...
 var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
@@ -194,30 +193,30 @@ button.onclick = () => {
     popupCheat.classList.toggle('show1')
   }
   if (winCounter === 16) {
-    popupCheat.innerHTML = `Really? You're still here?`
+    popupCheat.innerHTML = `Really?`
   }
   if (winCounter === 20) {
     popupCheat.innerHTML = `Stop clicking!!`
   }
-  if (winCounter === 25) {
+  if (winCounter === 23) {
     popupCheat.innerHTML = `Seriously?`
   }
   if (winCounter === 28) {
     popupCheat.innerHTML = `Stop!!`
   }
-  if (winCounter === 31) {
+  if (winCounter === 30) {
     popupCheat.innerHTML = `...`
   }
-  if (winCounter === 35) {
+  if (winCounter === 33) {
     popupCheat.innerHTML = `I'm warning you...`
   }
-  if (winCounter === 48) {
+  if (winCounter === 36) {
     popupCheat.innerHTML = `OK.`
   }
-  if (winCounter === 50) {
+  if (winCounter === 38) {
     popupCheat.innerHTML = `YOU DID THIS.`
   }
-  if (winCounter === 53) {
+  if (winCounter === 40) {
     document.body.style.visibility = 'hidden'
     popupCheat.innerHTML = `You broke the game. -_-`
     document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
@@ -244,7 +243,6 @@ meow.addEventListener('click', () => {
   }
 })
 
-// hard mode
 // makes blocks "hidden," changes text, and automatically increases move counter
 var hardest = document.querySelector('.hardest')
 hardest.addEventListener('click', () => {
@@ -276,12 +274,12 @@ scary.addEventListener('click', () => {
     document.body.style.backgroundRepeat = 'no-repeat'
     document.body.style.backgroundSize = 'stretch'
     document.body.style.backgroundPosition = 'center'
-    document.body.style.backgroundImage = "url('https://pa1.narvii.com/6010/326945292c91404edb69eefb6b3ad68ebfc73eb1_hq.gif')"
+    document.body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
     setTimeout(() => {
       document.body.style.background = 'red'
       setTimeout(() => {
         document.body.style.background = 'black'
       }, 100)
-    }, 300)
+    }, 200)
   }, 2000)
 })

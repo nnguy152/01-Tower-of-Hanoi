@@ -29,6 +29,7 @@ img {
   border: 2px solid white;
   height: 250px;
   width: 250px;
+  overflow: hidden;
 }
 .bg {
   background: white;
