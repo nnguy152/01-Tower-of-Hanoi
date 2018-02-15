@@ -101,14 +101,12 @@ function selectDestination3 () {
 function compare () {
   if (destination.hasChildNodes() === true) {
     compareChildren()
-    // addChildOnTop()
   } else {
     addChildOnTop()
   }
 }
 
-
-// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
+// checks if selected's block is smaller than destination's block
 function compareChildren () {
   if (selected === block[0]) {
     addChildOnTop()
@@ -149,6 +147,7 @@ function compareChildren () {
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
+  destination.style.border = '2px solid white'
   selected.style.border = 'none'
   start = null
   destination = null
