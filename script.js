@@ -20,7 +20,11 @@ document.onload = startGame()
 function startGame () {
   addListeners()
 }
-
+container1.addEventListener('mouseover', () => {
+  setTimeout(() => {
+    container1.style.border = '2px solid red'
+  }, 100)
+})
 // adds listeners to containers
 function addListeners () {
   container1.addEventListener('click', containerOneClicked)
