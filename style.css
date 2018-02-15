@@ -5,9 +5,10 @@ body, button {
   font-family: 'Nova Flat', cursive;
   font-size: 30px;
   border: none;
+  max-height: 700px;
 }
 h1 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 #objective {
   text-align: center;
@@ -67,13 +68,14 @@ img {
 }
 .cat {
   background-color: black;
-  background-position-y: 4.5px;
+  background-position-y: 5px;
   background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
 }
 .meow, .hardmode, .scary {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
+  margin: 0 10px 20px 10px;
 }
 
 .popup .youwin {

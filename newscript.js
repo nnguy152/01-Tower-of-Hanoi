@@ -1,7 +1,8 @@
-// selectors for containers
+// selectors for containers/blocks
 var container1 = document.querySelector('.one')
 var container2 = document.querySelector('.two')
 var container3 = document.querySelector('.three')
+var block = document.querySelectorAll('.block')
 // stores first block on tower & first/second clicked container
 var selected = null
 var destination = null
@@ -104,9 +105,9 @@ function compare () {
   }
 }
 
-// broken. Doesn't register width
+// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
 function compareChildren () {
-  if (selected.width < destination.firstChild.width) {
+  if (selected === block[1]) {
     addChildOnTop()
   } else {
     startGame()
@@ -147,9 +148,6 @@ function winText () {
   popup.classList.toggle('show')
   setTimeout(() => {
     popup.innerHTML = 'Play again?'
-    setTimeout(() => {
-      popup.classList.toggle('show')
-    }, 200)
   }, 1500)
   popup.addEventListener('click', () => {
     resetGame()
@@ -157,7 +155,6 @@ function winText () {
 }
 
 // resets game/move counter and restarts game
-var block = document.querySelectorAll('.block')
 function resetGame () {
   if (container3.childElementCount !== 0) {
     container3.removeChild(container3.firstChild)
@@ -169,6 +166,7 @@ function resetGame () {
     movesStart = 0
     moves.innerHTML = `Moves: 0`
   }
+  popup.classList.toggle('show')
   startGame()
 }
 
@@ -184,34 +182,34 @@ var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
-  if (winCounter === 10) {
+  if (winCounter === 7) {
     popupCheat.classList.toggle('show1')
   }
-  if (winCounter === 20) {
+  if (winCounter === 16) {
     popupCheat.innerHTML = `Really? You're still here?`
   }
-  if (winCounter === 30) {
+  if (winCounter === 20) {
     popupCheat.innerHTML = `Stop clicking!!`
   }
-  if (winCounter === 35) {
+  if (winCounter === 25) {
     popupCheat.innerHTML = `Seriously?`
   }
-  if (winCounter === 38) {
+  if (winCounter === 28) {
     popupCheat.innerHTML = `Stop!!`
   }
-  if (winCounter === 45) {
+  if (winCounter === 31) {
     popupCheat.innerHTML = `...`
   }
-  if (winCounter === 55) {
+  if (winCounter === 35) {
     popupCheat.innerHTML = `I'm warning you...`
   }
-  if (winCounter === 70) {
+  if (winCounter === 48) {
     popupCheat.innerHTML = `OK.`
   }
-  if (winCounter === 75) {
+  if (winCounter === 50) {
     popupCheat.innerHTML = `YOU DID THIS.`
   }
-  if (winCounter === 80) {
+  if (winCounter === 53) {
     document.body.style.visibility = 'hidden'
     popupCheat.innerHTML = `You broke the game. -_-`
     document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
@@ -270,9 +268,12 @@ scary.addEventListener('click', () => {
     document.body.style.backgroundRepeat = 'no-repeat'
     document.body.style.backgroundSize = 'stretch'
     document.body.style.backgroundPosition = 'center'
-    document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/pHGj9ZYhUv8/maxresdefault.jpg')"
+    document.body.style.backgroundImage = "url('https://pa1.narvii.com/6010/326945292c91404edb69eefb6b3ad68ebfc73eb1_hq.gif')"
     setTimeout(() => {
-      document.body.style.backgroundImage = 'none'
-    }, 200)
+      document.body.style.background = 'red'
+      setTimeout(() => {
+        document.body.style.background = 'black'
+      }, 100)
+    }, 300)
   }, 2000)
 })
