@@ -170,9 +170,17 @@ function resetGame () {
   startGame()
 }
 
+var easy = document.querySelector('.easy')
+easy.addEventListener('click', () => {
+  container1.removeChild(block[3])
+  container1.removeChild(block[4])
+})
 
-
-
+var hard = document.querySelector('.hard')
+hard.addEventListener('click', () => {
+  container1.appendChild(block[3])
+  container1.appendChild(block[4])
+})
 
 
 
@@ -238,8 +246,8 @@ meow.addEventListener('click', () => {
 
 // hard mode
 // makes blocks "hidden," changes text, and automatically increases move counter
-var hardMode = document.querySelector('.hardmode')
-hardMode.addEventListener('click', () => {
+var hardest = document.querySelector('.hardest')
+hardest.addEventListener('click', () => {
   for (var i = 0; i < blocks.length; i++) {
     document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
   }

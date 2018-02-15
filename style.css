@@ -57,6 +57,9 @@ img {
   width: 200px;
   margin: 10px 30px 10px 10px;
 }
+.reset {
+  font-size: 15px;
+}
 .instructions {
   text-align: left;
   font-size: 20px;
@@ -71,7 +74,7 @@ img {
   background-position-y: 5px;
   background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
 }
-.meow, .hardmode, .scary {
+.easy, .hard, .meow, .hardest, .scary {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
