@@ -97,20 +97,48 @@ function selectDestination3 () {
 // if container has blocks, compares sizes
 function compare () {
   if (destination.hasChildNodes() === true) {
-    console.log(destination.hasChildNodes())
     compareChildren()
-    addChildOnTop()
+    // addChildOnTop()
   } else {
     addChildOnTop()
   }
 }
 
+
 // @@@@@@@@@@@@@@@@@@broken. Doesn't register width
 function compareChildren () {
-  if (selected === block[1]) {
+  if (selected === block[0]) {
     addChildOnTop()
-  } else {
-    startGame()
+  } else if (selected === block[1]) {
+    if (destination.firstChild === block[0]) {
+      startGame()
+    } else {
+      addChildOnTop()
+    }
+  } else if (selected === block[2]) {
+    if (destination.firstChild === block[0] || destination.firstChild === block[1]) {
+      startGame()
+    } else {
+      addChildOnTop()
+    }
+  } else if (selected === block[3]) {
+    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2]) {
+      startGame()
+    } else {
+      addChildOnTop()
+    }
+  } else if (selected === block[4]) {
+    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3]) {
+      startGame()
+    } else {
+      addChildOnTop()
+    }
+  } else if (selected === block[5]) {
+    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3] || destination.firstChild === block[4]) {
+      startGame()
+    } else {
+      addChildOnTop()
+    }
   }
 }
 
