@@ -14,6 +14,8 @@ Features
 	-Allows player to reset game once they win.
 	-Other silly game modes. Click things and explore!
 
+![alt tag](https://github.com/nnguy152/01-Tower-of-Hanoi/blob/master/Meow.png)
+
 Build
 ----------------------------
 HTML, CSS, and Javascript - written in Virtual Studio Code.
