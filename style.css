@@ -10,12 +10,7 @@ body, button {
 h1 {
   margin-bottom: 8px;
 }
-#objective {
-  text-align: center;
-}
-img {
-  width: 30px;
-}
+
 .towercontainer {
   display: flex;
   justify-content: center;
@@ -31,6 +26,8 @@ img {
   width: 250px;
   overflow: hidden;
 }
+
+/* the blocks */
 .bg {
   background: white;
 }
@@ -53,13 +50,18 @@ img {
 #fifth, .cat {
   width: 250px;
 }
+
+/* moves, rules, and objectives */
+.objective {
+  text-align: center;
+}
+.objectives {
+  margin-left: 30px;
+}
 .moves, .instructions {
   margin: 20px 30px;
   width: 200px;
   margin: 10px 30px 10px 10px;
-}
-.reset {
-  font-size: 15px;
 }
 .instructions {
   text-align: left;
@@ -70,11 +72,15 @@ img {
   margin: 20px;
   font-size: 18px; 
 }
+
+/* silly code */
 .cat {
   background-color: black;
   background-position-y: 5px;
   background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
 }
+
+/* modes bar */
 .easy, .hard, .meow, .hardest, .scary {
   font-size: 15px;
   text-align: end;
@@ -82,16 +88,15 @@ img {
   margin: 0 10px 20px 10px;
 }
 
+/* win message and silly code message */
 .popup .youwin {
   visibility: hidden;
   text-align: center;
   font-size: 30px;
 }
-
 .popup .show {
   visibility: visible;
 }
-
 .popup1 .cheating {
   visibility: hidden;
   text-align: center;
@@ -99,7 +104,6 @@ img {
   width: 200px;
   margin: 10px 0 0 30px;
 }
-
 .popup1 .show1 {
   visibility: visible;
 }
