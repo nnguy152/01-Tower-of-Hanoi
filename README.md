@@ -9,8 +9,9 @@ Features
 ----------------------------
 
 	-Players can change between easy mode (3 blocks) and hard mode (5 blocks).
+	-Highlights blocks that player selects.
 	-Tracks moves and number of wins.
-	-Allows user to reset game once they win.
+	-Allows player to reset game once they win.
 	-Other silly game modes. Click things and explore!
 
 

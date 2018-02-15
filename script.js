@@ -33,7 +33,7 @@ function addListeners () {
 // changes listener event functions to selectDestination
 function containerOneClicked () {
   selected = container1.firstElementChild
-  selected.style.background = 'red'
+  selected.style.border = '2px solid red'
   start = container1
   if (start.childElementCount === 0) {
     startGame()
@@ -45,7 +45,7 @@ function containerOneClicked () {
 }
 function containerTwoClicked () {
   selected = container2.firstElementChild
-  selected.style.background = 'red'
+  selected.style.border = '2px solid red'
   start = container2
   if (start.childElementCount === 0) {
     startGame()
@@ -57,7 +57,7 @@ function containerTwoClicked () {
 }
 function containerThreeClicked () {
   selected = container3.firstElementChild
-  selected.style.background = 'red'
+  selected.style.border = '2px solid red'
   start = container3
   if (start.childElementCount === 0) {
     startGame()
@@ -149,7 +149,7 @@ function compareChildren () {
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
-  selected.style.background = 'white'
+  selected.style.border = '2px solid white'
   start = null
   destination = null
   selected = null
@@ -216,56 +216,62 @@ document.querySelector('.hard').addEventListener('click', () => {
 
 
 // all below is just some silly code
+var h1 = document.querySelector('h1')
+var instructions = document.querySelector('.instructions')
+var rules = document.querySelector('.rules')
+
+// hover over header
+h1.addEventListener('mouseover', () => {
+  h1.innerHTML = `( ͡° ͜ʖ ͡°)`
+  setTimeout(() => {
+    h1.innerHTML = 'Tower of Hanoi'
+  }, 600)
+})
 // pressing win increases win count but ...
 var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
-  if (winCounter === 7) {
+  if (winCounter === 4) {
     popupCheat.classList.toggle('show1')
   }
-  if (winCounter === 16) {
+  if (winCounter === 8) {
     popupCheat.innerHTML = `Really?`
   }
-  if (winCounter === 20) {
+  if (winCounter === 12) {
     popupCheat.innerHTML = `Stop clicking!!`
   }
-  if (winCounter === 23) {
+  if (winCounter === 17) {
     popupCheat.innerHTML = `Seriously?`
   }
-  if (winCounter === 28) {
-    popupCheat.innerHTML = `Stop!!`
+  if (winCounter === 20) {
+    popupCheat.innerHTML = `Stop.`
   }
-  if (winCounter === 30) {
+  if (winCounter === 22) {
     popupCheat.innerHTML = `...`
   }
-  if (winCounter === 33) {
+  if (winCounter === 24) {
     popupCheat.innerHTML = `I'm warning you...`
   }
-  if (winCounter === 36) {
+  if (winCounter === 28) {
     popupCheat.innerHTML = `OK.`
   }
-  if (winCounter === 38) {
+  if (winCounter === 30) {
     popupCheat.innerHTML = `YOU DID THIS.`
   }
-  if (winCounter === 40) {
+  if (winCounter === 32) {
     document.body.style.visibility = 'hidden'
     popupCheat.innerHTML = `You broke the game. -_-`
     document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
   }
 }
 
-var h1 = document.querySelector('h1')
-var instructions = document.querySelector('.instructions')
-var rules = document.querySelector('.rules')
-var blocks = document.querySelectorAll('.block')
-
 // meow mode
 // changes blocks into stacks of Nyan cats and texts to meows
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
-  for (var i = 0; i < blocks.length; i++) {
-    blocks[i].classList.add('cat')
+  for (var i = 0; i < block.length; i++) {
+    block[i].classList.add('cat')
     document.body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
     document.body.style.backgroundRepeat = 'no-repeat'
     document.body.style.backgroundSize = '400px'
