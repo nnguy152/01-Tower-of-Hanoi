@@ -1,3 +1,4 @@
+
 // selectors for containers/blocks
 var container1 = document.querySelector('.one')
 var container2 = document.querySelector('.two')
@@ -20,11 +21,7 @@ document.onload = startGame()
 function startGame () {
   addListeners()
 }
-container1.addEventListener('mouseover', () => {
-  setTimeout(() => {
-    container1.style.border = '2px solid red'
-  }, 100)
-})
+
 // adds listeners to containers
 function addListeners () {
   container1.addEventListener('click', containerOneClicked)
@@ -105,12 +102,14 @@ function selectDestination3 () {
 function compare () {
   if (destination.hasChildNodes() === true) {
     compareChildren()
+    // addChildOnTop()
   } else {
     addChildOnTop()
   }
 }
 
-// checks if selected's block is smaller than destination's block
+
+// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
 function compareChildren () {
   if (selected === block[0]) {
     addChildOnTop()
@@ -151,7 +150,6 @@ function compareChildren () {
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
-  destination.style.border = '2px solid white'
   selected.style.border = 'none'
   start = null
   destination = null
