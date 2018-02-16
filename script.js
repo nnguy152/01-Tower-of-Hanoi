@@ -106,7 +106,7 @@ function compare () {
 }
 
 
-// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
+
 function compareChildren () {
   if (selected === block[0]) {
     addChildOnTop()
@@ -206,6 +206,33 @@ document.querySelector('.hard').addEventListener('click', () => {
   container[0].appendChild(block[3])
   container[0].appendChild(block[4])
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
