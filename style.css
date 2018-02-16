@@ -1,3 +1,6 @@
+body {
+  margin: 80px auto;
+}
 body, button {
   background: black;
   color: white;
@@ -36,19 +39,19 @@ h1 {
   height: 40px;
   background-size: 50px;
 }
-#first, .cat {
+.one, .cat {
   width: 50px;
 }
-#second, .cat {
+.two, .cat {
   width: 100px;
 }
-#third, .cat {
+.three, .cat {
   width: 150px;
 }
-#fourth, .cat{
+.fourth, .cat{
   width: 200px;
 }
-#fifth, .cat {
+.fifth, .cat {
   width: 250px;
 }
 

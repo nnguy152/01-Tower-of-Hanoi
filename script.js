@@ -1,7 +1,5 @@
 // selectors for containers/blocks
-var container1 = document.querySelector('.one')
-var container2 = document.querySelector('.two')
-var container3 = document.querySelector('.three')
+var container = document.querySelectorAll('.container')
 var block = document.querySelectorAll('.block')
 // stores first block on tower & first/second clicked container
 var selected = null
@@ -14,145 +12,136 @@ var moves = document.querySelector('.moves')
 var winCounter = 0
 var button = document.querySelector('.button')
 
-// starts game upon page load
 document.onload = startGame()
 
+// block[3].addEventListener('click', select)
+// block[4].addEventListener('click', select)
 function startGame () {
-  addListeners()
-}
+  block[0].addEventListener('click', () => {
+    selected = block[0]
+    start = block[0].parentNode
+    console.log(start)
+    selected.style.border = '2px solid red'
+  })
+  block[1].addEventListener('click', () => {
+    selected = block[1]
+    start = block[1].parentNode
+    selected.style.border = '2px solid red'
+  })
+  block[2].addEventListener('click', () => {
+    selected = block[2]
+    start = block[2].parentNode
+    selected.style.border = '2px solid red'
+  })
 
+  container[0].addEventListener('click', selectD1)
+  container[1].addEventListener('click', selectD2)
+  container[2].addEventListener('click', selectD3)
+
+  function selectD1 () {
+    destination = container[0]
+    compare()
+  }
+
+  function selectD2 () {
+    destination = container[1]
+    compare()
+  }
+  function selectD3 () {
+    destination = container[2]
+    compare()
+  }
+
+  function compare () {
+    if (selected === block[0]) {
+      addChild()
+    }
+  }
+  function addChild () {
+    start.removeChild(selected)
+    destination.prepend(selected)
+    console.log(destination.childNodes)
+  }
+}
 // adds listeners to containers
-function addListeners () {
-  container1.addEventListener('click', containerOneClicked)
-  container2.addEventListener('click', containerTwoClicked)
-  container3.addEventListener('click', containerThreeClicked)
-}
+// function addListeners () {
+//   container[0].addEventListener('click', (evt) => {
+//     destination = evt.target
+//     console.log(selected)
+//     console.log('This is destination' + destination)
+//   })
+//   container[1].addEventListener('click', (evt) => {
+//     destination = evt.target
+//     console.log(selected)
+//     console.log(destination)
+//   })
+//   // container[2].addEventListener('click', selectDestination)
+// }
 
-// when specific container clicked, goes to specific function
-// containerClicked function stores container/firstChild in variables declared at beginning
-// changes listener event functions to selectDestination
-function containerOneClicked () {
-  selected = container1.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container1
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container2.addEventListener('click', selectDestination2)
-    container3.addEventListener('click', selectDestination3)
-  }
-}
-function containerTwoClicked () {
-  selected = container2.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container2
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container1.addEventListener('click', selectDestination1)
-    container3.addEventListener('click', selectDestination3)
-  }
-}
-function containerThreeClicked () {
-  selected = container3.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container3
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container1.addEventListener('click', selectDestination1)
-    container2.addEventListener('click', selectDestination2)
-  }
-}
-
+  // if (destination === (container[0] || container[1] || container[2])) {
+  //   selected.prepend(selected)
+  // }
 // removes Listeners to prevent restarting from beginning
-function removeListener () {
-  container1.removeEventListener('click', containerOneClicked)
-  container2.removeEventListener('click', containerTwoClicked)
-  container3.removeEventListener('click', containerThreeClicked)
-}
-
-// when second container clicked, stores destination in variables declared at beginning
-// removes event listeners to prevent JS restarting
-function selectDestination1 () {
-  destination = container1
-  container1.removeEventListener('click', selectDestination1)
-  container3.removeEventListener('click', selectDestination3)
-  compare()
-}
-function selectDestination2 () {
-  destination = container2
-  container2.removeEventListener('click', selectDestination2)
-  container3.removeEventListener('click', selectDestination3)
-  compare()
-}
-function selectDestination3 () {
-  destination = container3
-  container1.removeEventListener('click', selectDestination1)
-  container2.removeEventListener('click', selectDestination2)
-  compare()
-}
+// function removeListener () {
+//   container[0].removeEventListener('click', blockClicked)
+//   container[1].removeEventListener('click', blockClicked)
+//   container[2].removeEventListener('click', blockClicked)
+// }
 
 // sees if destination container has blocks
 // if container has blocks, compares sizes
-function compare () {
-  if (destination.hasChildNodes() === true) {
-    compareChildren()
-    // addChildOnTop()
-  } else {
-    addChildOnTop()
-  }
-}
+// function compare () {
+//   if (destination.hasChildNodes() === true) {
+//     compareChildren()
+//     // addChildOnTop()
+//   } else {
+//     addChildOnTop()
+//   }
+// }
 
-
-// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
-function compareChildren () {
-  if (selected === block[0]) {
-    addChildOnTop()
-  } else if (selected === block[1]) {
-    if (destination.firstChild === block[0]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[2]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[3]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[4]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[5]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3] || destination.firstChild === block[4]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  }
-}
+// compares selected block with blocks in container
+// function compareChildren () {
+//   if (parseInt(selected) < parseInt(destination.firstChild)) {
+//     addChildOnTop()
+//   }
+  // } else if (selected === block[1]) {
+  //   if (destination.firstChild === block[0]) {
+  //     startGame()
+  //   } else {
+  //     addChildOnTop()
+  //   }
+  // } else if (selected === block[2]) {
+  //   if (destination.firstChild === block[0] || destination.firstChild === block[1]) {
+  //     startGame()
+  //   } else {
+  //     addChildOnTop()
+  //   }
+  // } else if (selected === block[3]) {
+  //   if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2]) {
+  //     startGame()
+  //   } else {
+  //     addChildOnTop()
+  //   }
+  // } else if (selected === block[4]) {
+  //   if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3]) {
+  //     startGame()
+  //   } else {
+  //     addChildOnTop()
+  //   }
+  // } else if (selected === block[5]) {
+  //   if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3] || destination.firstChild === block[4]) {
+  //     startGame()
+  //   } else {
+  //     addChildOnTop()
+  //   }
+  // }
+// }
 
 // adds children in container
 function addChildOnTop () {
   start.removeChild(selected)
   destination.prepend(selected)
   selected.style.border = 'none'
-  start = null
-  destination = null
-  selected = null
   trackMoves()
 }
 
@@ -165,7 +154,7 @@ function trackMoves () {
 
 // increases win counter when player moves all blocks to container 3
 function win () {
-  if (container1.childElementCount === 0 && container2.childElementCount === 0) {
+  if (container[0].childElementCount === 0 && container[1].childElementCount === 0) {
     winText()
     winCounter += 1
     button.innerHTML = `Wins: ${winCounter}`
@@ -188,13 +177,9 @@ function winText () {
 
 // resets game/move counter and restarts game
 function resetGame () {
-  if (container3.childElementCount !== 0) {
-    container3.removeChild(container3.firstChild)
-    container1.appendChild(block[0])
-    container1.appendChild(block[1])
-    container1.appendChild(block[2])
-    container1.appendChild(block[3])
-    container1.appendChild(block[4])
+  if (container[2].childElementCount !== 0) {
+    container[2].removeChild(container[2].firstChild)
+    container[0].appendChild(block[0], block[1], block[2], block[3], block[4])
     movesStart = 0
     moves.innerHTML = `Moves: 0`
   }
@@ -204,13 +189,11 @@ function resetGame () {
 
 // switch between easy & hard mode
 document.querySelector('.easy').addEventListener('click', () => {
-  container1.removeChild(block[3])
-  container1.removeChild(block[4])
+  container[0].removeChild(block[3], block[4])
 })
 
 document.querySelector('.hard').addEventListener('click', () => {
-  container1.appendChild(block[3])
-  container1.appendChild(block[4])
+  container[0].appendChild(block[3], block[4])
 })
 
 
@@ -309,10 +292,10 @@ scary.addEventListener('click', () => {
   document.querySelector('.button').style.visibility = 'hidden'
   document.body.style.visibility = 'hidden'
   setTimeout(() => {
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = 'stretch'
-    document.body.style.backgroundPosition = 'center'
-    document.body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
+    document.body.style.background = "url('http://i.imgur.com/yehFBWx.jpg') no-repeat stretch center"
+    // document.body.style.backgroundSize = 'stretch'
+    // document.body.style.backgroundPosition = 'center'
+    // document.body.style.backgroundImage = ""
     setTimeout(() => {
       document.body.style.background = 'red'
       setTimeout(() => {
