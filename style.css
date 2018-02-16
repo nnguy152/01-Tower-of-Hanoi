@@ -39,19 +39,19 @@ h1 {
   height: 40px;
   background-size: 50px;
 }
-.one, .cat {
+#first, .cat {
   width: 50px;
 }
-.two, .cat {
+#second, .cat {
   width: 100px;
 }
-.three, .cat {
+#third, .cat {
   width: 150px;
 }
-.fourth, .cat{
+#fourth, .cat{
   width: 200px;
 }
-.fifth, .cat {
+#fifth, .cat {
   width: 250px;
 }
 
