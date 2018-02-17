@@ -24,118 +24,79 @@ function startGame () {
 // adds listeners to containers
 function addListeners () {
   container[0].addEventListener('click', () => {
-    if (start === null) {
+    if (start === null && destination === null) {
       selected = container[0].firstElementChild
+      selected.style.border = '2px red solid'
       start = container[0]
-      console.log('starting')
-      console.log(selected)
-      console.log(start)
+      console.log(selected.classList)
     } else {
-      console.log('destination')
       destination = container[0]
-      console.log(destination)
+      if (destination !== null) {
+        compare()
+      }
     }
   })
-  container[1].addEventListener('click', (evt) => {
-    if (start === null) {
+  container[1].addEventListener('click', () => {
+    if (start === null && destination === null) {
       selected = container[1].firstElementChild
+      selected.style.border = '2px red solid'
       start = container[1]
-      console.log('starting')
-      console.log(selected)
-      console.log(start)
     } else {
-      console.log('destination')
       destination = container[1]
-      console.log(destination)
+      if (destination !== null) {
+        compare()
+      }
     }
   })
-  container[2].addEventListener('click', (evt) => {
-    if (start === null) {
+  container[2].addEventListener('click', () => {
+    if (start === null && destination === null) {
       selected = container[2].firstElementChild
+      selected.style.border = '2px red solid'
       start = container[2]
-      console.log('starting')
-      console.log(selected)
-      console.log(start)
     } else {
-      console.log('destination')
       destination = container[2]
-      console.log(destination)
+      if (destination !== null) {
+        compare()
+      }
     }
   })
 }
 
-// when second container clicked, stores destination in variables declared at beginning
-// removes event listeners to prevent JS restarting
-// function selectDestination1 (evt) {
-//   if (destination === null) {
-//     console.log('selecting destination')
-//     console.log(selected, start)
-//     console.log(evt)
-//     destination = evt.firstElementChild
-//     console.log(destination)
-//   }
-// }
-//   compare()
-// }
 // sees if destination container has blocks
 // if container has blocks, compares sizes
-// function compare () {
-//   if (destination.hasChildNodes() === true) {
-//     compareChildren()
-//     // addChildOnTop()
-//   } else {
-//     addChildOnTop()
-//   }
-// }
+function compare () {
+  if (destination.hasChildNodes() === true) {
+    compareChildren()
+  } else {
+    addChildOnTop()
+  }
+}
 
+// @@@ need to figure out a way to either compare selected blocks' CSS width with destination first block width 
+// or compare index values
+function compareChildren () {
+  if (selected.width < destination.firstChild.width) {
+    addChildOnTop()
+  } else {
+    alert('Not a valid move')
+    selected.style.border = 'none'
+    selected = null
+    start = null
+    destination = null
+    startGame()
+  }
+}
 
-// // @@@@@@@@@@@@@@@@@@broken. Doesn't register width
-// function compareChildren () {
-//   if (selected === block[0]) {
-//     addChildOnTop()
-//   } else if (selected === block[1]) {
-//     if (destination.firstChild === block[0]) {
-//       startGame()
-//     } else {
-//       addChildOnTop()
-//     }
-//   } else if (selected === block[2]) {
-//     if (destination.firstChild === block[0] || destination.firstChild === block[1]) {
-//       startGame()
-//     } else {
-//       addChildOnTop()
-//     }
-//   } else if (selected === block[3]) {
-//     if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2]) {
-//       startGame()
-//     } else {
-//       addChildOnTop()
-//     }
-//   } else if (selected === block[4]) {
-//     if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3]) {
-//       startGame()
-//     } else {
-//       addChildOnTop()
-//     }
-//   } else if (selected === block[5]) {
-//     if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3] || destination.firstChild === block[4]) {
-//       startGame()
-//     } else {
-//       addChildOnTop()
-//     }
-//   }
-// }
-
-// // adds children in container
-// function addChildOnTop () {
-//   start.removeChild(selected)
-//   destination.prepend(selected)
-//   selected.style.border = 'none'
-//   start = null
-//   destination = null
-//   selected = null
-//   trackMoves()
-// }
+// adds children in container
+function addChildOnTop () {
+  start.removeChild(selected)
+  destination.prepend(selected)
+  selected.style.border = 'none'
+  start = null
+  destination = null
+  selected = null
+  // trackMoves()
+}
 
 // // increases moves counter when container adds child
 // function trackMoves () {
