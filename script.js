@@ -11,18 +11,13 @@ var moves = document.querySelector('.moves')
 // some silly code
 var winCounter = 0
 var button = document.querySelector('.button')
+
 // starts game upon page load
 document.onload = startGame()
 
-function startGame () {
-  console.log('startGame')
-  console.log(start, selected, destination)
-  addListeners()
-}
-
-
 // adds listeners to containers
-function addListeners () {
+function startGame () {
+  console.log('start game!')
   container[0].addEventListener('click', storeElements)
   container[1].addEventListener('click', storeElements)
   container[2].addEventListener('click', storeElements)
@@ -33,10 +28,8 @@ function storeElements (evt) {
     selected = evt.target
     selected.style.border = '2px solid red'
     start = evt.target
-    console.log(selected, start)
   } else {
     destination = evt.target
-    console.log(destination)
     compare()
   }
 }
@@ -48,37 +41,34 @@ function compare () {
     compareChildren()
   } else {
     addChildOnTop()
-    console.log('compare just add ontop')
   }
 }
 
 // compares index values, if bigger- invalid move popup, starts game code over
 function compareChildren () {
   if (selected.classList[0] < destination.firstElementChild.classList[0]) {
-    console.log(destination.firstElementChild)
     addChildOnTop()
   } else {
     alert('Not a valid move')
     selected.style.border = 'none'
-    reset()
+    resetVariables()
+    startGame()
   }
 }
 
 // resets variables to restart game code logic
-function reset () {
+function resetVariables () {
   start = null
   selected = null
   destination = null
-  startGame()
 }
+
 // adds children in container
 function addChildOnTop () {
   start.remove(selected)
   destination.prepend(selected)
   selected.style.border = 'none'
-  start = null
-  destination = null
-  selected = null
+  resetVariables()
   trackMoves()
 }
 
@@ -86,48 +76,53 @@ function addChildOnTop () {
 function trackMoves () {
   movesStart++
   moves.innerHTML = `Moves: ${movesStart}`
-  // win()
   startGame()
+  win()
 }
 
-// // increases win counter when player moves all blocks to container 3
-// function win () {
-//   if (container[0].childElementCount === 0 && container[1].childElementCount === 0) {
-//     winText()
-//     winCounter += 1
-//     button.innerHTML = `Wins: ${winCounter}`
-//   } else {
-//     startGame()
-//   }
-// }
+// increases win counter when player moves all blocks to container 3
+function win () {
+  if (container[0].childElementCount === 0 && container[1].childElementCount === 0) {
+    winText()
+    winCounter += 1
+    button.innerHTML = `Wins: ${winCounter}`
+  } else {
+    startGame()
+  }
+}
 
-// // win popup text
-// var popup = document.querySelector('.youwin')
-// function winText () {
-//   popup.classList.toggle('show')
-//   setTimeout(() => {
-//     popup.innerHTML = 'Play again?'
-//   }, 1500)
-//   popup.addEventListener('click', () => {
-//     resetGame()
-//   })
-// }
+// win popup text
+var popup = document.querySelector('.youwin')
+function winText () {
+  console.log('Show You win!')
+  popup.classList.toggle('show')
+  setTimeout(() => {
+    console.log('show play again?')
+    popup.innerHTML = 'Play again?'
+  }, 1500)
+  popup.addEventListener('click', () => {
+    console.log('reset to you win!')
+    popup.innerHTML = 'You win!'
+    resetGame()
+  })
+}
 
-// // resets game/move counter and restarts game
-// function resetGame () {
-//   if (container[2].childElementCount !== 0) {
-//     container[2].removeChild(container[2].firstChild)
-//     container[0].appendChild(block[0])
-//     container[0].appendChild(block[1])
-//     container[0].appendChild(block[2])
-//     container[0].appendChild(block[3])
-//     container[0].appendChild(block[4])
-//     movesStart = 0
-//     moves.innerHTML = `Moves: 0`
-//   }
-//   popup.classList.toggle('show')
-//   startGame()
-// }
+// resets game/move counter and restarts game
+function resetGame () {
+  if (container[2].childElementCount !== 0) {
+    container[2].removeChild(container[2].firstChild)
+    container[0].appendChild(block[0])
+    // container[0].appendChild(block[1])
+    // container[0].appendChild(block[2])
+    // container[0].appendChild(block[3])
+    // container[0].appendChild(block[4])
+    movesStart = 0
+    moves.innerHTML = `Moves: 0`
+    console.log('close popup')
+    popup.classList.toggle('show')
+  }
+  startGame()
+}
 
 // // switch between easy & hard mode
 // document.querySelector('.easy').addEventListener('click', () => {
