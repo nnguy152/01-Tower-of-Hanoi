@@ -1,4 +1,3 @@
-
 // selectors for containers/blocks
 var container = document.querySelectorAll('.container')
 var block = document.querySelectorAll('.block')
@@ -43,7 +42,7 @@ function storeElements (evt) {
 }
 
 // sees if destination container has blocks
-// if container has blocks, compares sizes
+// if container has blocks, compares sizes, else prepends block
 function compare () {
   if (destination.firstElementChild !== null) {
     compareChildren()
@@ -53,6 +52,7 @@ function compare () {
   }
 }
 
+// compares index values, if bigger- invalid move popup, starts game code over
 function compareChildren () {
   if (selected.classList[0] < destination.firstElementChild.classList[0]) {
     console.log(destination.firstElementChild)
@@ -64,6 +64,7 @@ function compareChildren () {
   }
 }
 
+// resets variables to restart game code logic
 function reset () {
   start = null
   selected = null
