@@ -12,11 +12,11 @@ var moves = document.querySelector('.moves')
 // some silly code
 var winCounter = 0
 var button = document.querySelector('.button')
-
 // starts game upon page load
 document.onload = startGame()
 
 function startGame () {
+  console.log('startGame')
   addListeners()
 }
 
@@ -28,7 +28,6 @@ function addListeners () {
       selected = container[0].firstElementChild
       selected.style.border = '2px red solid'
       start = container[0]
-      console.log(selected.classList)
     } else {
       destination = container[0]
       if (destination !== null) {
@@ -65,7 +64,7 @@ function addListeners () {
 // sees if destination container has blocks
 // if container has blocks, compares sizes
 function compare () {
-  if (destination.hasChildNodes() === true) {
+  if (destination.firstElementChild !== null) {
     compareChildren()
   } else {
     addChildOnTop()
@@ -75,18 +74,22 @@ function compare () {
 // @@@ need to figure out a way to either compare selected blocks' CSS width with destination first block width 
 // or compare index values
 function compareChildren () {
-  if (selected.width < destination.firstChild.width) {
+  if (selected.classList[0] < destination.firstElementChild.classList[0]) {
+    console.log(destination.firstElementChild)
     addChildOnTop()
   } else {
     alert('Not a valid move')
     selected.style.border = 'none'
-    selected = null
-    start = null
-    destination = null
-    startGame()
+    reset()
   }
 }
 
+function reset () {
+  start = null
+  selected = null
+  destination = null
+  startGame()
+}
 // adds children in container
 function addChildOnTop () {
   start.removeChild(selected)
