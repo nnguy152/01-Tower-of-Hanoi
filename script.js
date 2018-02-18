@@ -24,20 +24,23 @@ function startGame () {
 }
 
 // found bug here. Able to select block under other blocks
-// another bug- able to prepend into other blocks LOL
 function storeElements (evt) {
   if (start === null && (evt.target === block[0] || evt.target === block[1] || evt.target === block[2])) {
     selected = evt.target
     selected.style.border = '2px solid red'
     start = evt.target
-    if (selected !== selected.parentNode.firstElementChild) {
-      alert(`Hey. No cheating`)
-      resetVariables()
-      startGame()
-    }
+    // if (selected !== start.firstElementChild) {
+    //   alert(`Hey. No cheating`)
+    //   resetVariables()
+    //   startGame()
+    // }
   } else {
     destination = evt.target
-    compare()
+    if (destination === container[0] || destination === container[1] || destination === container[2]) {
+      compare()
+    } else {
+      alert('pick a container')
+    }
   }
 }
 
@@ -72,6 +75,7 @@ function resetVariables () {
 // adds children in container
 function addChildOnTop () {
   start.remove(selected)
+  if (destination )
   destination.prepend(selected)
   selected.style.border = 'none'
   resetVariables()
