@@ -17,48 +17,29 @@ document.onload = startGame()
 
 function startGame () {
   console.log('startGame')
+  console.log(start, selected, destination)
   addListeners()
 }
 
 
 // adds listeners to containers
 function addListeners () {
-  container[0].addEventListener('click', () => {
-    if (start === null && destination === null) {
-      selected = container[0].firstElementChild
-      selected.style.border = '2px red solid'
-      start = container[0]
-    } else {
-      destination = container[0]
-      if (destination !== null) {
-        compare()
-      }
-    }
-  })
-  container[1].addEventListener('click', () => {
-    if (start === null && destination === null) {
-      selected = container[1].firstElementChild
-      selected.style.border = '2px red solid'
-      start = container[1]
-    } else {
-      destination = container[1]
-      if (destination !== null) {
-        compare()
-      }
-    }
-  })
-  container[2].addEventListener('click', () => {
-    if (start === null && destination === null) {
-      selected = container[2].firstElementChild
-      selected.style.border = '2px red solid'
-      start = container[2]
-    } else {
-      destination = container[2]
-      if (destination !== null) {
-        compare()
-      }
-    }
-  })
+  container[0].addEventListener('click', storeElements)
+  container[1].addEventListener('click', storeElements)
+  container[2].addEventListener('click', storeElements)
+}
+
+function storeElements (evt) {
+  if (start === null && (evt.target === block[0] || evt.target === block[1] || evt.target === block[2])) {
+    selected = evt.target
+    selected.style.border = '2px solid red'
+    start = evt.target
+    console.log(selected, start)
+  } else {
+    destination = evt.target
+    console.log(destination)
+    compare()
+  }
 }
 
 // sees if destination container has blocks
@@ -68,11 +49,10 @@ function compare () {
     compareChildren()
   } else {
     addChildOnTop()
+    console.log('compare just add ontop')
   }
 }
 
-// @@@ need to figure out a way to either compare selected blocks' CSS width with destination first block width 
-// or compare index values
 function compareChildren () {
   if (selected.classList[0] < destination.firstElementChild.classList[0]) {
     console.log(destination.firstElementChild)
@@ -92,21 +72,22 @@ function reset () {
 }
 // adds children in container
 function addChildOnTop () {
-  start.removeChild(selected)
+  start.remove(selected)
   destination.prepend(selected)
   selected.style.border = 'none'
   start = null
   destination = null
   selected = null
-  // trackMoves()
+  trackMoves()
 }
 
-// // increases moves counter when container adds child
-// function trackMoves () {
-//   movesStart++
-//   moves.innerHTML = `Moves: ${movesStart}`
-//   win()
-// }
+// increases moves counter when container adds child
+function trackMoves () {
+  movesStart++
+  moves.innerHTML = `Moves: ${movesStart}`
+  // win()
+  startGame()
+}
 
 // // increases win counter when player moves all blocks to container 3
 // function win () {
