@@ -2,9 +2,8 @@
 var container = document.querySelectorAll('.container')
 var block = document.querySelectorAll('.block')
 // stores first block on tower & first/second clicked container
-var selected = null
-var destination = null
 var start = null
+var destination = null
 // stores total moves
 var movesStart = 0
 var moves = document.querySelector('.moves')
@@ -26,14 +25,8 @@ function startGame () {
 // found bug here. Able to select block under other blocks
 function storeElements (evt) {
   if (start === null && (evt.target === block[0] || evt.target === block[1] || evt.target === block[2])) {
-    selected = evt.target
-    selected.style.border = '2px solid red'
     start = evt.target
-    // if (selected !== start.firstElementChild) {
-    //   alert(`Hey. No cheating`)
-    //   resetVariables()
-    //   startGame()
-    // }
+    start.style.border = '2px solid red'
   } else {
     destination = evt.target
     if (destination === container[0] || destination === container[1] || destination === container[2]) {
@@ -56,10 +49,10 @@ function compare () {
 
 // compares index values, if bigger- invalid move popup, starts game code over
 function compareChildren () {
-  if (selected.classList[0] < destination.firstElementChild.classList[0]) {
+  if (start.classList[0] < destination.firstElementChild.classList[0]) {
     addChildOnTop()
   } else {
-    selected.style.border = 'none'
+    start.style.border = 'none'
     resetVariables()
     startGame()
   }
@@ -68,16 +61,14 @@ function compareChildren () {
 // resets variables to restart game code logic
 function resetVariables () {
   start = null
-  selected = null
   destination = null
 }
 
 // adds children in container
 function addChildOnTop () {
-  start.remove(selected)
-  if (destination )
-  destination.prepend(selected)
-  selected.style.border = 'none'
+  start.remove(start)
+  destination.prepend(start)
+  start.style.border = 'none'
   resetVariables()
   trackMoves()
 }
@@ -86,7 +77,6 @@ function addChildOnTop () {
 function trackMoves () {
   movesStart++
   moves.innerHTML = `Moves: ${movesStart}`
-  startGame()
   win()
 }
 
@@ -104,28 +94,23 @@ function win () {
 // win popup text
 var popup = document.querySelector('.youwin')
 function winText () {
-  console.log('Show You win!')
   popup.classList.toggle('show')
   setTimeout(() => {
-    console.log('show play again?')
     popup.innerHTML = 'Play again?'
   }, 1500)
   popup.addEventListener('click', () => {
-    console.log('reset to you win!')
     popup.innerHTML = 'You win!'
     resetGame()
   })
 }
 
-// resets game/move counter and restarts game
+// resets blocks/move counter and restarts game
 function resetGame () {
   if (container[2].childElementCount !== 0) {
     container[2].removeChild(container[2].firstChild)
-    container[0].appendChild(block[0])
-    container[0].appendChild(block[1])
-    container[0].appendChild(block[2])
-    container[0].appendChild(block[3])
-    container[0].appendChild(block[4])
+    for (var i = 0; i < 5; i++) {
+      container[0].appendChild(block[i])
+    }
     movesStart = 0
     moves.innerHTML = `Moves: 0`
     popup.classList.toggle('show')
