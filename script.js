@@ -23,11 +23,18 @@ function startGame () {
   container[2].addEventListener('click', storeElements)
 }
 
+// found bug here. Able to select block under other blocks
+// another bug- able to prepend into other blocks LOL
 function storeElements (evt) {
   if (start === null && (evt.target === block[0] || evt.target === block[1] || evt.target === block[2])) {
     selected = evt.target
     selected.style.border = '2px solid red'
     start = evt.target
+    if (selected !== selected.parentNode.firstElementChild) {
+      alert(`Hey. No cheating`)
+      resetVariables()
+      startGame()
+    }
   } else {
     destination = evt.target
     compare()
@@ -35,7 +42,7 @@ function storeElements (evt) {
 }
 
 // sees if destination container has blocks
-// if container has blocks, compares sizes, else prepends block
+// if container has blocks, compares size of blocks, else prepends block
 function compare () {
   if (destination.firstElementChild !== null) {
     compareChildren()
@@ -49,7 +56,6 @@ function compareChildren () {
   if (selected.classList[0] < destination.firstElementChild.classList[0]) {
     addChildOnTop()
   } else {
-    alert('Not a valid move')
     selected.style.border = 'none'
     resetVariables()
     startGame()
@@ -112,28 +118,28 @@ function resetGame () {
   if (container[2].childElementCount !== 0) {
     container[2].removeChild(container[2].firstChild)
     container[0].appendChild(block[0])
-    // container[0].appendChild(block[1])
-    // container[0].appendChild(block[2])
-    // container[0].appendChild(block[3])
-    // container[0].appendChild(block[4])
+    container[0].appendChild(block[1])
+    container[0].appendChild(block[2])
+    container[0].appendChild(block[3])
+    container[0].appendChild(block[4])
     movesStart = 0
     moves.innerHTML = `Moves: 0`
-    console.log('close popup')
     popup.classList.toggle('show')
   }
   startGame()
 }
 
-// // switch between easy & hard mode
-// document.querySelector('.easy').addEventListener('click', () => {
-//   container[0].removeChild(block[3])
-//   container[0].removeChild(block[4])
-// })
+// switch between easy & hard mode
+document.querySelector('.easy').addEventListener('click', () => {
+  resetGame()
+  container[0].removeChild(block[3])
+  container[0].removeChild(block[4])
+})
 
-// document.querySelector('.hard').addEventListener('click', () => {
-//   container[0].appendChild(block[3])
-//   container[0].appendChild(block[4])
-// })
+document.querySelector('.hard').addEventListener('click', () => {
+  container[0].appendChild(block[3])
+  container[0].appendChild(block[4])
+})
 
 
 
