@@ -4,11 +4,11 @@ var block = document.querySelectorAll('.block')
 // stores first block on tower & first/second clicked container
 var start = null
 var destination = null
-// stores total moves
+// stores total moves/wins
 var movesStart = 0
 var moves = document.querySelector('.moves')
-// some silly code
 var winCounter = 0
+// for game modes
 var button = document.querySelector('.button')
 
 // starts game upon page load
@@ -17,9 +17,11 @@ document.onload = startGame()
 // adds listeners to containers
 function startGame () {
   console.log('start game!')
-  container[0].addEventListener('click', storeElements)
-  container[1].addEventListener('click', storeElements)
-  container[2].addEventListener('click', storeElements)
+  container[0].removeChild(block[3])
+  container[0].removeChild(block[4])
+  for (var i = 0; i < 3; i++) {
+    container[i].addEventListener('click', storeElements)
+  }
 }
 
 // found bug here. Able to select block under other blocks
@@ -37,8 +39,7 @@ function storeElements (evt) {
   }
 }
 
-// sees if destination container has blocks
-// if container has blocks, compares size of blocks, else prepends block
+// sees if destination container has blocks & compares sizes, else prepends block
 function compare () {
   if (destination.firstElementChild !== null) {
     compareChildren()
@@ -75,8 +76,7 @@ function addChildOnTop () {
 
 // increases moves counter when container adds child
 function trackMoves () {
-  movesStart++
-  moves.innerHTML = `Moves: ${movesStart}`
+  moves.innerHTML = `Moves: ${movesStart += 1}`
   win()
 }
 
@@ -84,8 +84,7 @@ function trackMoves () {
 function win () {
   if (container[0].childElementCount === 0 && container[1].childElementCount === 0) {
     winText()
-    winCounter += 1
-    button.innerHTML = `Wins: ${winCounter}`
+    button.innerHTML = `Wins: ${winCounter += 1}`
   } else {
     startGame()
   }
