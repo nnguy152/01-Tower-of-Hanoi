@@ -17,8 +17,6 @@ document.onload = startGame()
 // adds listeners to containers
 function startGame () {
   console.log('start game!')
-  container[0].removeChild(block[3])
-  container[0].removeChild(block[4])
   for (var i = 0; i < 3; i++) {
     container[i].addEventListener('click', storeElements)
   }
