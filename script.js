@@ -130,108 +130,108 @@ document.querySelector('.hard').addEventListener('click', () => {
 
 
 // all below is just some silly code
-var h1 = document.querySelector('h1')
-var instructions = document.querySelector('.instructions')
-var rules = document.querySelector('.rules')
+// var h1 = document.querySelector('h1')
+// var instructions = document.querySelector('.instructions')
+// var rules = document.querySelector('.rules')
 
-// hover over header
-h1.addEventListener('mouseover', () => {
-  h1.innerHTML = `( ͡° ͜ʖ ͡°)`
-  setTimeout(() => {
-    h1.innerHTML = 'Tower of Hanoi'
-  }, 600)
-})
-// pressing win increases win count but ...
-var popupCheat = document.querySelector('.cheating')
-button.onclick = () => {
-  winCounter += 1
-  button.innerHTML = `Wins: ${winCounter}`
-  if (winCounter === 4) {
-    popupCheat.classList.toggle('show1')
-  }
-  if (winCounter === 8) {
-    popupCheat.innerHTML = `Really?`
-  }
-  if (winCounter === 12) {
-    popupCheat.innerHTML = `Stop clicking!!`
-  }
-  if (winCounter === 17) {
-    popupCheat.innerHTML = `Seriously?`
-  }
-  if (winCounter === 20) {
-    popupCheat.innerHTML = `Stop.`
-  }
-  if (winCounter === 22) {
-    popupCheat.innerHTML = `...`
-  }
-  if (winCounter === 24) {
-    popupCheat.innerHTML = `I'm warning you...`
-  }
-  if (winCounter === 28) {
-    popupCheat.innerHTML = `OK.`
-  }
-  if (winCounter === 30) {
-    popupCheat.innerHTML = `YOU DID THIS.`
-  }
-  if (winCounter === 32) {
-    document.body.style.visibility = 'hidden'
-    popupCheat.innerHTML = `You broke the game. -_-`
-    document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
-  }
-}
+// // hover over header
+// h1.addEventListener('mouseover', () => {
+//   h1.innerHTML = `( ͡° ͜ʖ ͡°)`
+//   setTimeout(() => {
+//     h1.innerHTML = 'Tower of Hanoi'
+//   }, 600)
+// })
+// // pressing win increases win count but ...
+// var popupCheat = document.querySelector('.cheating')
+// button.onclick = () => {
+//   winCounter += 1
+//   button.innerHTML = `Wins: ${winCounter}`
+//   if (winCounter === 4) {
+//     popupCheat.classList.toggle('show1')
+//   }
+//   if (winCounter === 8) {
+//     popupCheat.innerHTML = `Really?`
+//   }
+//   if (winCounter === 12) {
+//     popupCheat.innerHTML = `Stop clicking!!`
+//   }
+//   if (winCounter === 17) {
+//     popupCheat.innerHTML = `Seriously?`
+//   }
+//   if (winCounter === 20) {
+//     popupCheat.innerHTML = `Stop.`
+//   }
+//   if (winCounter === 22) {
+//     popupCheat.innerHTML = `...`
+//   }
+//   if (winCounter === 24) {
+//     popupCheat.innerHTML = `I'm warning you...`
+//   }
+//   if (winCounter === 28) {
+//     popupCheat.innerHTML = `OK.`
+//   }
+//   if (winCounter === 30) {
+//     popupCheat.innerHTML = `YOU DID THIS.`
+//   }
+//   if (winCounter === 32) {
+//     document.body.style.visibility = 'hidden'
+//     popupCheat.innerHTML = `You broke the game. -_-`
+//     document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
+//   }
+// }
 
-// meow mode
-// changes blocks into stacks of Nyan cats and texts to meows
-var meow = document.querySelector('.meow')
-meow.addEventListener('click', () => {
-  for (var i = 0; i < block.length; i++) {
-    block[i].classList.add('cat')
-    document.body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = '400px'
-    h1.innerHTML = 'Meower of Catnoi'
-    rules.innerHTML = 'meow meow meow meow meow'
-    instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
-  }
-})
+// // meow mode
+// // changes blocks into stacks of Nyan cats and texts to meows
+// var meow = document.querySelector('.meow')
+// meow.addEventListener('click', () => {
+//   for (var i = 0; i < block.length; i++) {
+//     block[i].classList.add('cat')
+//     document.body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
+//     document.body.style.backgroundRepeat = 'no-repeat'
+//     document.body.style.backgroundSize = '400px'
+//     h1.innerHTML = 'Meower of Catnoi'
+//     rules.innerHTML = 'meow meow meow meow meow'
+//     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
+//   }
+// })
 
-// makes blocks "hidden," changes text, and automatically increases move counter
-var hardest = document.querySelector('.hardest')
-hardest.addEventListener('click', () => {
-  for (var i = 0; i < block.length; i++) {
-    document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
-  }
-  h1.innerHTML = 'Cower in Hardnoi'
-  instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
-  document.body.style.backgroundImage = 'none'
-  rules.innerHTML = 'Once you go black...'
-  document.body.style.backgroundImage = 'hidden'
-  setInterval(() => {
-    movesStart++
-    moves.innerHTML = `Moves: ${movesStart}`
-  }, 300)
-  setTimeout(() => {
-    winCounter++
-    document.querySelector('.button').style.visibility = 'visible'
-    document.querySelector('.button').innerHTML = `Loss: ${winCounter}`
-  }, 900)
-})
+// // makes blocks "hidden," changes text, and automatically increases move counter
+// var hardest = document.querySelector('.hardest')
+// hardest.addEventListener('click', () => {
+//   for (var i = 0; i < block.length; i++) {
+//     document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
+//   }
+//   h1.innerHTML = 'Cower in Hardnoi'
+//   instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
+//   document.body.style.backgroundImage = 'none'
+//   rules.innerHTML = 'Once you go black...'
+//   document.body.style.backgroundImage = 'hidden'
+//   setInterval(() => {
+//     movesStart++
+//     moves.innerHTML = `Moves: ${movesStart}`
+//   }, 300)
+//   setTimeout(() => {
+//     winCounter++
+//     document.querySelector('.button').style.visibility = 'visible'
+//     document.querySelector('.button').innerHTML = `Loss: ${winCounter}`
+//   }, 900)
+// })
 
-// DON'T mode
-var scary = document.querySelector('.scary')
-scary.addEventListener('click', () => {
-  document.querySelector('.button').style.visibility = 'hidden'
-  document.body.style.visibility = 'hidden'
-  setTimeout(() => {
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = 'stretch'
-    document.body.style.backgroundPosition = 'center'
-    document.body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
-    setTimeout(() => {
-      document.body.style.background = 'red'
-      setTimeout(() => {
-        document.body.style.background = 'black'
-      }, 100)
-    }, 200)
-  }, 2000)
-})
+// // DON'T mode
+// var scary = document.querySelector('.scary')
+// scary.addEventListener('click', () => {
+//   document.querySelector('.button').style.visibility = 'hidden'
+//   document.body.style.visibility = 'hidden'
+//   setTimeout(() => {
+//     document.body.style.backgroundRepeat = 'no-repeat'
+//     document.body.style.backgroundSize = 'stretch'
+//     document.body.style.backgroundPosition = 'center'
+//     document.body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
+//     setTimeout(() => {
+//       document.body.style.background = 'red'
+//       setTimeout(() => {
+//         document.body.style.background = 'black'
+//       }, 100)
+//     }, 200)
+//   }, 2000)
+// })
