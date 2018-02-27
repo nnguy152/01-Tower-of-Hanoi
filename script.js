@@ -31,8 +31,6 @@ function storeElements (evt) {
     destination = evt.target
     if (destination === container[0] || destination === container[1] || destination === container[2]) {
       compare()
-    } else {
-      alert('ruffx') // add popup thing say something I dunno. (for when click block )
     }
   }
 }
@@ -80,7 +78,7 @@ function trackMoves () {
 
 // increases win counter when player moves all blocks to container 3
 function win () {
-  if (container[0].childElementCount === 0 && container[1].childElementCount === 0) {
+  if (container[2].childElementCount === 3 || container[2].childElementCount === 5) {
     winText()
     button.innerHTML = `Wins: ${winCounter += 1}`
   } else {
@@ -117,9 +115,8 @@ function resetGame () {
 
 // switch between easy & hard mode
 document.querySelector('.easy').addEventListener('click', () => {
-  resetGame()
-  container[0].removeChild(block[3])
-  container[0].removeChild(block[4])
+  block[3].remove()
+  block[4].remove()
 })
 
 document.querySelector('.hard').addEventListener('click', () => {
@@ -156,27 +153,29 @@ button.onclick = () => {
     popupCheat.innerHTML = `Stop clicking!!`
   }
   if (winCounter === 17) {
-    popupCheat.innerHTML = `Seriously?`
-  }
-  if (winCounter === 20) {
     popupCheat.innerHTML = `Stop.`
   }
-  if (winCounter === 22) {
+  if (winCounter === 20) {
     popupCheat.innerHTML = `...`
   }
-  if (winCounter === 24) {
+  if (winCounter === 22) {
     popupCheat.innerHTML = `I'm warning you...`
   }
-  if (winCounter === 28) {
+  if (winCounter === 25) {
     popupCheat.innerHTML = `OK.`
   }
-  if (winCounter === 30) {
+  if (winCounter === 27) {
     popupCheat.innerHTML = `YOU DID THIS.`
   }
-  if (winCounter === 32) {
+  if (winCounter === 29) {
     document.body.style.visibility = 'hidden'
     popupCheat.innerHTML = `You broke the game. -_-`
-    document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
+    popupCheat.style.fontSize = '30px'
+    popupCheat.style.background = 'rgba(255, 0, 0, 0.7)'
+    popupCheat.style.padding = '10px'
+    popupCheat.style.borderRadius = '20px'
+    document.body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
+    document.body.style.backgroundHeight = '100%'
   }
 }
 
@@ -193,28 +192,6 @@ meow.addEventListener('click', () => {
     rules.innerHTML = 'meow meow meow meow meow'
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
-})
-
-// makes blocks "hidden," changes text, and automatically increases move counter
-var hardest = document.querySelector('.hardest')
-hardest.addEventListener('click', () => {
-  for (var i = 0; i < block.length; i++) {
-    document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
-  }
-  h1.innerHTML = 'Cower in Hardnoi'
-  instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
-  document.body.style.backgroundImage = 'none'
-  rules.innerHTML = 'Once you go black...'
-  document.body.style.backgroundImage = 'hidden'
-  setInterval(() => {
-    movesStart++
-    moves.innerHTML = `Moves: ${movesStart}`
-  }, 300)
-  setTimeout(() => {
-    winCounter++
-    document.querySelector('.button').style.visibility = 'visible'
-    document.querySelector('.button').innerHTML = `Loss: ${winCounter}`
-  }, 900)
 })
 
 // DON'T mode

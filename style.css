@@ -1,4 +1,6 @@
-
+body {
+  height: 500px;
+}
 body, button {
   background: black;
   color: white;
@@ -6,7 +8,6 @@ body, button {
   font-family: 'Nova Flat', cursive;
   font-size: 30px;
   border: none;
-  max-height: 700px;
 }
 h1 {
   margin-bottom: 8px;
@@ -83,7 +84,7 @@ h1 {
 }
 
 /* modes bar */
-.easy, .hard, .meow, .hardest, .scary {
+.easy, .hard, .meow, .scary {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
@@ -108,4 +109,8 @@ h1 {
 }
 .popup1 .show1 {
   visibility: visible;
+}
+
+@media screen and (min-width: 1325){
+
 }
