@@ -143,39 +143,23 @@ var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
   winCounter += 1
   button.innerHTML = `Wins: ${winCounter}`
-  if (winCounter === 4) {
-    popupCheat.classList.toggle('show1')
-  }
-  if (winCounter === 8) {
-    popupCheat.innerHTML = `Really?`
-  }
-  if (winCounter === 12) {
-    popupCheat.innerHTML = `Stop clicking!!`
-  }
-  if (winCounter === 17) {
-    popupCheat.innerHTML = `Stop.`
-  }
-  if (winCounter === 20) {
-    popupCheat.innerHTML = `...`
-  }
-  if (winCounter === 22) {
-    popupCheat.innerHTML = `I'm warning you...`
-  }
-  if (winCounter === 25) {
-    popupCheat.innerHTML = `OK.`
-  }
-  if (winCounter === 27) {
-    popupCheat.innerHTML = `YOU DID THIS.`
-  }
-  if (winCounter === 29) {
-    document.body.style.visibility = 'hidden'
-    popupCheat.innerHTML = `You broke the game. -_-`
-    popupCheat.style.fontSize = '30px'
-    popupCheat.style.background = 'rgba(255, 0, 0, 0.7)'
-    popupCheat.style.padding = '10px'
-    popupCheat.style.borderRadius = '20px'
-    document.body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
-    document.body.style.backgroundHeight = '100%'
+  switch (winCounter) {
+    case 4:
+      popupCheat.classList.toggle('show1')
+      break
+    case 8:
+      popupCheat.innerHTML = `Really?`
+      break
+    case 12:
+      popupCheat.innerHTML = `Stop clicking!!`
+      document.body.style.visibility = 'hidden'
+      popupCheat.innerHTML = `You broke the game. -_-`
+      popupCheat.style.fontSize = '30px'
+      popupCheat.style.background = 'rgba(255, 0, 0, 0.7)'
+      popupCheat.style.padding = '10px'
+      popupCheat.style.borderRadius = '20px'
+      document.body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
+      document.body.style.backgroundHeight = '100%'
   }
 }
 

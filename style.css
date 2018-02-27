@@ -84,7 +84,7 @@ h1 {
 }
 
 /* modes bar */
-.easy, .hard, .meow, .scary {
+.mode {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
