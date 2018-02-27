@@ -1,175 +1,87 @@
 
 // selectors for containers/blocks
-var container1 = document.querySelector('.one')
-var container2 = document.querySelector('.two')
-var container3 = document.querySelector('.three')
+var container = document.querySelectorAll('.container')
 var block = document.querySelectorAll('.block')
 // stores first block on tower & first/second clicked container
-var selected = null
-var destination = null
 var start = null
-// stores total moves
+var destination = null
+// stores total moves/wins
 var movesStart = 0
 var moves = document.querySelector('.moves')
-// some silly code
 var winCounter = 0
+// for game modes
 var button = document.querySelector('.button')
 
 // starts game upon page load
 document.onload = startGame()
 
-function startGame () {
-  addListeners()
-}
-
 // adds listeners to containers
-function addListeners () {
-  container1.addEventListener('click', containerOneClicked)
-  container2.addEventListener('click', containerTwoClicked)
-  container3.addEventListener('click', containerThreeClicked)
-}
-
-// when specific container clicked, goes to specific function
-// containerClicked function stores container/firstChild in variables declared at beginning
-// changes listener event functions to selectDestination
-function containerOneClicked () {
-  selected = container1.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container1
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container2.addEventListener('click', selectDestination2)
-    container3.addEventListener('click', selectDestination3)
-  }
-}
-function containerTwoClicked () {
-  selected = container2.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container2
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container1.addEventListener('click', selectDestination1)
-    container3.addEventListener('click', selectDestination3)
-  }
-}
-function containerThreeClicked () {
-  selected = container3.firstElementChild
-  selected.style.border = '2px solid red'
-  start = container3
-  if (start.childElementCount === 0) {
-    startGame()
-  } else {
-    removeListener()
-    container1.addEventListener('click', selectDestination1)
-    container2.addEventListener('click', selectDestination2)
+function startGame () {
+  console.log('start game!')
+  for (var i = 0; i < 3; i++) {
+    container[i].addEventListener('click', storeElements)
   }
 }
 
-// removes Listeners to prevent restarting from beginning
-function removeListener () {
-  container1.removeEventListener('click', containerOneClicked)
-  container2.removeEventListener('click', containerTwoClicked)
-  container3.removeEventListener('click', containerThreeClicked)
+// found bug here. Able to select block under other blocks
+function storeElements (evt) {
+  if (start === null && (evt.target === container[0].firstElementChild || evt.target === container[1].firstElementChild || evt.target === container[2].firstElementChild)) {
+    start = evt.target
+    start.style.border = '2px solid red'
+  } else {
+    destination = evt.target
+    if (destination === container[0] || destination === container[1] || destination === container[2]) {
+      compare()
+    }
+  }
 }
 
-// when second container clicked, stores destination in variables declared at beginning
-// removes event listeners to prevent JS restarting
-function selectDestination1 () {
-  destination = container1
-  container1.removeEventListener('click', selectDestination1)
-  container3.removeEventListener('click', selectDestination3)
-  compare()
-}
-function selectDestination2 () {
-  destination = container2
-  container2.removeEventListener('click', selectDestination2)
-  container3.removeEventListener('click', selectDestination3)
-  compare()
-}
-function selectDestination3 () {
-  destination = container3
-  container1.removeEventListener('click', selectDestination1)
-  container2.removeEventListener('click', selectDestination2)
-  compare()
-}
-
-// sees if destination container has blocks
-// if container has blocks, compares sizes
+// sees if destination container has blocks & compares sizes, else prepends block
 function compare () {
-  if (destination.hasChildNodes() === true) {
+  if (destination.firstElementChild !== null) {
     compareChildren()
-    // addChildOnTop()
   } else {
     addChildOnTop()
   }
 }
 
-
-// @@@@@@@@@@@@@@@@@@broken. Doesn't register width
+// compares index values, if bigger- invalid move popup, starts game code over
 function compareChildren () {
-  if (selected === block[0]) {
+  if (start.classList[0] < destination.firstElementChild.classList[0]) {
     addChildOnTop()
-  } else if (selected === block[1]) {
-    if (destination.firstChild === block[0]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[2]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[3]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[4]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
-  } else if (selected === block[5]) {
-    if (destination.firstChild === block[0] || destination.firstChild === block[1] || destination.firstChild === block[2] || destination.firstChild === block[3] || destination.firstChild === block[4]) {
-      startGame()
-    } else {
-      addChildOnTop()
-    }
+  } else {
+    start.style.border = 'none'
+    resetVariables()
+    startGame()
   }
+}
+
+// resets variables to restart game code logic
+function resetVariables () {
+  start = null
+  destination = null
 }
 
 // adds children in container
 function addChildOnTop () {
-  start.removeChild(selected)
-  destination.prepend(selected)
-  selected.style.border = 'none'
-  start = null
-  destination = null
-  selected = null
+  start.remove(start)
+  destination.prepend(start)
+  start.style.border = 'none'
+  resetVariables()
   trackMoves()
 }
 
 // increases moves counter when container adds child
 function trackMoves () {
-  movesStart++
-  moves.innerHTML = `Moves: ${movesStart}`
+  moves.innerHTML = `Moves: ${movesStart += 1}`
   win()
 }
 
 // increases win counter when player moves all blocks to container 3
 function win () {
-  if (container1.childElementCount === 0 && container2.childElementCount === 0) {
+  if (container[2].childElementCount === 3 || container[2].childElementCount === 5) {
     winText()
-    winCounter += 1
-    button.innerHTML = `Wins: ${winCounter}`
+    button.innerHTML = `Wins: ${winCounter += 1}`
   } else {
     startGame()
   }
@@ -183,35 +95,34 @@ function winText () {
     popup.innerHTML = 'Play again?'
   }, 1500)
   popup.addEventListener('click', () => {
+    popup.innerHTML = 'You win!'
     resetGame()
   })
 }
 
-// resets game/move counter and restarts game
+// resets blocks/move counter and restarts game
 function resetGame () {
-  if (container3.childElementCount !== 0) {
-    container3.removeChild(container3.firstChild)
-    container1.appendChild(block[0])
-    container1.appendChild(block[1])
-    container1.appendChild(block[2])
-    container1.appendChild(block[3])
-    container1.appendChild(block[4])
+  if (container[2].childElementCount !== 0) {
+    container[2].removeChild(container[2].firstChild)
+    for (var i = 0; i < 5; i++) {
+      container[0].appendChild(block[i])
+    }
     movesStart = 0
     moves.innerHTML = `Moves: 0`
+    popup.classList.toggle('show')
   }
-  popup.classList.toggle('show')
   startGame()
 }
 
 // switch between easy & hard mode
 document.querySelector('.easy').addEventListener('click', () => {
-  container1.removeChild(block[3])
-  container1.removeChild(block[4])
+  block[3].remove()
+  block[4].remove()
 })
 
 document.querySelector('.hard').addEventListener('click', () => {
-  container1.appendChild(block[3])
-  container1.appendChild(block[4])
+  container[0].appendChild(block[3])
+  container[0].appendChild(block[4])
 })
 
 
@@ -243,27 +154,29 @@ button.onclick = () => {
     popupCheat.innerHTML = `Stop clicking!!`
   }
   if (winCounter === 17) {
-    popupCheat.innerHTML = `Seriously?`
-  }
-  if (winCounter === 20) {
     popupCheat.innerHTML = `Stop.`
   }
-  if (winCounter === 22) {
+  if (winCounter === 20) {
     popupCheat.innerHTML = `...`
   }
-  if (winCounter === 24) {
+  if (winCounter === 22) {
     popupCheat.innerHTML = `I'm warning you...`
   }
-  if (winCounter === 28) {
+  if (winCounter === 25) {
     popupCheat.innerHTML = `OK.`
   }
-  if (winCounter === 30) {
+  if (winCounter === 27) {
     popupCheat.innerHTML = `YOU DID THIS.`
   }
-  if (winCounter === 32) {
+  if (winCounter === 29) {
     document.body.style.visibility = 'hidden'
     popupCheat.innerHTML = `You broke the game. -_-`
-    document.body.style.backgroundImage = "url('http://78.media.tumblr.com/tumblr_mab652PAHK1rf18ygo1_400.gif')"
+    popupCheat.style.fontSize = '30px'
+    popupCheat.style.background = 'rgba(255, 0, 0, 0.7)'
+    popupCheat.style.padding = '10px'
+    popupCheat.style.borderRadius = '20px'
+    document.body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
+    document.body.style.backgroundHeight = '100%'
   }
 }
 
@@ -280,28 +193,6 @@ meow.addEventListener('click', () => {
     rules.innerHTML = 'meow meow meow meow meow'
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
-})
-
-// makes blocks "hidden," changes text, and automatically increases move counter
-var hardest = document.querySelector('.hardest')
-hardest.addEventListener('click', () => {
-  for (var i = 0; i < block.length; i++) {
-    document.querySelectorAll('.bg')[i].style.visibility = 'hidden'
-  }
-  h1.innerHTML = 'Cower in Hardnoi'
-  instructions.innerHTML = 'Objectives: Suffer. Rules: See objective.'
-  document.body.style.backgroundImage = 'none'
-  rules.innerHTML = 'Once you go black...'
-  document.body.style.backgroundImage = 'hidden'
-  setInterval(() => {
-    movesStart++
-    moves.innerHTML = `Moves: ${movesStart}`
-  }, 300)
-  setTimeout(() => {
-    winCounter++
-    document.querySelector('.button').style.visibility = 'visible'
-    document.querySelector('.button').innerHTML = `Loss: ${winCounter}`
-  }, 900)
 })
 
 // DON'T mode
