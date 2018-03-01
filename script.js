@@ -11,7 +11,7 @@ var winCounter = 0
 // for game modes
 var button = document.querySelector('.button')
 // win text popup
-var popup = document.querySelector('.youwin')
+var popup = document.querySelector('.winner')
 
 // starts game upon page load
 document.onload = startGame()
