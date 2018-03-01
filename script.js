@@ -10,16 +10,15 @@ var moves = document.querySelector('.moves')
 var winCounter = 0
 // for game modes
 var button = document.querySelector('.button')
+// win text popup
+var popup = document.querySelector('.youwin')
 
 // starts game upon page load
 document.onload = startGame()
 
 // adds listeners to containers
 function startGame () {
-  console.log('start game!')
-  for (var i = 0; i < 3; i++) {
-    container[i].addEventListener('click', storeElements)
-  }
+  container.forEach(container => container.addEventListener('click', storeElements))
 }
 
 // found bug here. Able to select block under other blocks
@@ -87,12 +86,9 @@ function win () {
 }
 
 // win popup text
-var popup = document.querySelector('.youwin')
 function winText () {
   popup.classList.toggle('show')
-  setTimeout(() => {
-    popup.innerHTML = 'Play again?'
-  }, 1500)
+  setTimeout(() => { popup.innerHTML = 'Play again?' }, 1500)
   popup.addEventListener('click', () => {
     popup.innerHTML = 'You win!'
     resetGame()
@@ -103,9 +99,7 @@ function winText () {
 function resetGame () {
   if (container[2].childElementCount !== 0) {
     container[2].removeChild(container[2].firstChild)
-    for (var i = 0; i < 5; i++) {
-      container[0].appendChild(block[i])
-    }
+    block.forEach((blocks) => container[0].appendChild(blocks))
     movesStart = 0
     moves.innerHTML = `Moves: 0`
     popup.classList.toggle('show')
@@ -127,17 +121,19 @@ document.querySelector('.hard').addEventListener('click', () => {
 
 
 // all below is just some silly code
-var h1 = document.querySelector('h1')
+var header = document.querySelector('h1')
 var instructions = document.querySelector('.instructions')
 var rules = document.querySelector('.rules')
+var body = document.querySelector('body')
 
 // hover over header
-h1.addEventListener('mouseover', () => {
-  h1.innerHTML = `( ͡° ͜ʖ ͡°)`
+header.addEventListener('mouseover', () => {
+  header.innerHTML = `( ͡° ͜ʖ ͡°)`
   setTimeout(() => {
-    h1.innerHTML = 'Tower of Hanoi'
+    header.innerHTML = 'Tower of Hanoi'
   }, 600)
 })
+
 // pressing win increases win count but ...
 var popupCheat = document.querySelector('.cheating')
 button.onclick = () => {
@@ -152,27 +148,43 @@ button.onclick = () => {
       break
     case 12:
       popupCheat.innerHTML = `Stop clicking!!`
-      document.body.style.visibility = 'hidden'
+      break
+    case 17:
+      popupCheat.innerHTML = `Stop.`
+      break
+    case 20:
+      popupCheat.innerHTML = `...`
+      break
+    case 22:
+      popupCheat.innerHTML = `I'm warning you...`
+      break
+    case 25:
+      popupCheat.innerHTML = `OK.`
+      break
+    case 27:
+      popupCheat.innerHTML = `YOU DID THIS.`
+      break
+    case 29:
+      body.style.visibility = 'hidden'
       popupCheat.innerHTML = `You broke the game. -_-`
       popupCheat.style.fontSize = '30px'
       popupCheat.style.background = 'rgba(255, 0, 0, 0.7)'
       popupCheat.style.padding = '10px'
       popupCheat.style.borderRadius = '20px'
-      document.body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
-      document.body.style.backgroundHeight = '100%'
+      body.style.backgroundImage = "url('giphy.gif')" // from https://giphy.com/gifs/horror-static-xaMg6NGwH2fFS
+      body.style.backgroundHeight = '100%'
   }
 }
 
-// meow mode
-// changes blocks into stacks of Nyan cats and texts to meows
+// meow mode- changes blocks into stacks of Nyan cats and texts to meows
 var meow = document.querySelector('.meow')
 meow.addEventListener('click', () => {
   for (var i = 0; i < block.length; i++) {
     block[i].classList.add('cat')
-    document.body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = '400px'
-    h1.innerHTML = 'Meower of Catnoi'
+    body.style.backgroundImage = "url('https://vignette.wikia.nocookie.net/clashofclans/images/3/30/NYAN_CAT.gif/revision/latest/scale-to-width-down/640?cb=20150415221840')"
+    body.style.backgroundRepeat = 'no-repeat'
+    body.style.backgroundSize = '400px'
+    header.innerHTML = 'Meower of Catnoi'
     rules.innerHTML = 'meow meow meow meow meow'
     instructions.innerHTML = 'meow meow meow meow meow meow meow meow meow meow mewo meow meow meow meow meow meow meow'
   }
@@ -182,17 +194,16 @@ meow.addEventListener('click', () => {
 var scary = document.querySelector('.scary')
 scary.addEventListener('click', () => {
   document.querySelector('.button').style.visibility = 'hidden'
-  document.body.style.visibility = 'hidden'
+  body.style.backgroundImage = 'none' // makes sure if player clicks meow mode first, nyan cat won't appear in "do not click" mode
+  body.style.visibility = 'hidden'
   setTimeout(() => {
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = 'stretch'
-    document.body.style.backgroundPosition = 'center'
-    document.body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
+    body.style.backgroundRepeat = 'no-repeat'
+    body.style.backgroundSize = 'stretch'
+    body.style.backgroundPosition = 'center'
+    body.style.backgroundImage = "url('http://i.imgur.com/yehFBWx.jpg')"
     setTimeout(() => {
-      document.body.style.background = 'red'
-      setTimeout(() => {
-        document.body.style.background = 'black'
-      }, 100)
+      body.style.background = 'red'
+      setTimeout(() => { body.style.background = 'black' }, 100)
     }, 200)
   }, 2000)
 })

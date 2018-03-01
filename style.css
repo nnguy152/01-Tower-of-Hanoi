@@ -1,6 +1,3 @@
-body {
-  height: 500px;
-}
 body, button {
   background: black;
   color: white;
@@ -38,19 +35,19 @@ h1 {
   height: 40px;
   background-size: 50px;
 }
-#first, .cat {
+.first, .cat {
   width: 50px;
 }
-#second, .cat {
+.second, .cat {
   width: 100px;
 }
-#third, .cat {
+.third, .cat {
   width: 150px;
 }
-#fourth, .cat{
+.fourth, .cat{
   width: 200px;
 }
-#fifth, .cat {
+.fifth, .cat {
   width: 250px;
 }
 
@@ -62,9 +59,8 @@ h1 {
   margin-left: 30px;
 }
 .moves, .instructions {
-  margin: 20px 30px;
+  margin: 20px;
   width: 200px;
-  margin: 10px 30px 10px 10px;
 }
 .instructions {
   text-align: left;
@@ -111,6 +107,104 @@ h1 {
   visibility: visible;
 }
 
-@media screen and (min-width: 1325){
-
+/* for smaller sizes */
+@media (max-width: 1175px){
+  body, button {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: 'Nova Flat', cursive;
+    font-size: 20px;
+    border: none;
+  }
+  h1 {
+    margin-bottom: 8px;
+  }
+  .tc {
+    height: 100px;
+  }
+  .c {
+    border: 2px solid white;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+  }
+  
+  .bg {
+    background: white;
+  }
+  .block, .cat {
+    height: 15px;
+    background-size: 30px;
+  }
+  #first, .cat {
+    width: 20px;
+  }
+  #second, .cat {
+    width: 40px;
+  }
+  #third, .cat {
+    width: 60px;
+  }
+  #fourth, .cat{
+    width: 80px;
+  }
+  #fifth, .cat {
+    width: 100px;
+  }
+  
+  /* moves, rules, and objectives */
+  .objective {
+    text-align: center;
+  }
+  .objectives {
+    margin-left: 30px;
+  }
+  .moves, .instructions {
+    margin: 10px;
+  }
+  .instructions {
+    text-align: left;
+    font-size: 15px;
+    padding-right: 10px;
+  }
+  .rules {
+    margin: 10px;
+    font-size: 15px; 
+  }
+  
+  /* silly code */
+  .cat {
+    background-color: black;
+    background-position-y: 2px;
+    background-size: 20px;
+    background-image: url('http://i0.kym-cdn.com/photos/images/newsfeed/000/117/424/tumblr_ljwaimhJcK1qa4ebfo1_500.gif?1303833934')
+  }
+  
+  /* modes bar */
+  .mode {
+    font-size: 15px;
+    text-align: end;
+    margin-bottom: 10px;
+  }
+  
+  /* win message and silly code message */
+  .popup .youwin {
+    visibility: hidden;
+    text-align: center;
+    font-size: 15px;
+  }
+  .popup .show {
+    visibility: visible;
+  }
+  .popup1 .cheating {
+    visibility: hidden;
+    text-align: center;
+    font-size: 12px;
+    width: 200px;
+    margin: 10px 0 0 30px;
+  }
+  .popup1 .show1 {
+    visibility: visible;
+  }
 }
