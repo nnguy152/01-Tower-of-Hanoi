@@ -10,50 +10,51 @@
 </head>
 <body>
   <h1>Tower of Hanoi</h1>
-  <button class="easy">Easy Mode</button>
-  <button class="hard">Hard Mode</button>
-  <button class="meow">Meow Mode</button>
-  <button class="hardest">Hardest Mode</button>
-  <button class="scary">DON'T-</button>
+  <button class="easy mode">Easy Mode</button>
+  <button class="hard mode">Hard Mode</button>
+  <button class="meow mode">Meow Mode</button>
+  <button class="scary mode">Do Not Click</button>
 
   <!-- extra div containers so inner divs won't get affected by flex -->
-  <div class="towercontainer">
-    <div class="instructions">
+  <article class="tower-container">
+    <aside class="instructions">
       <div class="objective">-Objective-</div> 
       <div class="objectives">Move blocks from left box to right box. Click the box to select the top block, then click the box you want to place it.</div>
-    </div>
+    </aside>
     
-    <div class="container one">
-      <div id="first" class="block bg"></div>
-      <div id="second" class="block bg"></div>
-      <div id="third" class="block bg"></div>
-      <div id="fourth" class="block bg"></div>
-      <div id="fifth" class="block bg"></div>
-    </div>
-    <div class="container two"></div>
-    <div class="container three"></div>
+    <section class="container one">
+    <!-- numbers in class used to compare block sizes -->
+      <div class="1 first block bg"></div> 
+      <div class="2 second block bg"></div>
+      <div class="3 third block bg"></div>
+      <div class="4 fourth block bg"></div>
+      <div class="5 fifth block bg"></div>
+    </section>
+    <section class="container two"></section>
+    <section class="container three"></section>
 
-    <div>
+    <aside>
       <div class="popup">
-        <div class="youwin">You win!</div>
+        <div class="winner">You win!</div>
       </div>
       <div class="moves">Moves: 0</div>
       <button class="button">Win: 0</button>
       <div class="popup1">
         <div class="cheating">...you're not just clicking the button for fun, are you?</div>
       </div>
-    </div>
-  </div>
+    </aside>
+  </article>
   <!-- end tower container -->
 
-  <div class="rules">
+  <aside class="rules">
     <div> 
       <div>-Rules-</div>
       <div>Move one block at a time.</div>
       <div>Bigger blocks cannot go on top of smaller blocks.</div>
     </div>
-  </div>
+  </aside>
 
+  <audio class="audio" controls src='dub.mp3' />
   <script src="script.js"></script>
 </body>
 </html>

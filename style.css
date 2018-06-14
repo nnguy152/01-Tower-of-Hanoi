@@ -1,3 +1,8 @@
+html {
+  height: 100vh;
+  display:flex;
+  justify-content: space-around;
+}
 body, button {
   background: black;
   color: white;
@@ -5,14 +10,13 @@ body, button {
   font-family: 'Nova Flat', cursive;
   font-size: 30px;
   border: none;
-  max-height: 700px;
 }
 h1 {
   margin-bottom: 8px;
 }
 
 /* the containers format */
-.towercontainer {
+.tower-container {
   display: flex;
   justify-content: center;
   height: 250px;
@@ -36,19 +40,19 @@ h1 {
   height: 40px;
   background-size: 50px;
 }
-#first, .cat {
+.first, .cat {
   width: 50px;
 }
-#second, .cat {
+.second, .cat {
   width: 100px;
 }
-#third, .cat {
+.third, .cat {
   width: 150px;
 }
-#fourth, .cat{
+.fourth, .cat{
   width: 200px;
 }
-#fifth, .cat {
+.fifth, .cat {
   width: 250px;
 }
 
@@ -60,9 +64,8 @@ h1 {
   margin-left: 30px;
 }
 .moves, .instructions {
-  margin: 20px 30px;
+  margin: 20px;
   width: 200px;
-  margin: 10px 30px 10px 10px;
 }
 .instructions {
   text-align: left;
@@ -82,7 +85,7 @@ h1 {
 }
 
 /* modes bar */
-.easy, .hard, .meow, .hardest, .scary {
+.mode {
   font-size: 15px;
   text-align: end;
   margin-bottom: 20px;
@@ -90,7 +93,7 @@ h1 {
 }
 
 /* win message and silly code message */
-.popup .youwin {
+.popup .winner {
   visibility: hidden;
   text-align: center;
   font-size: 30px;
@@ -107,4 +110,9 @@ h1 {
 }
 .popup1 .show1 {
   visibility: visible;
+}
+
+
+audio {
+  display: none;
 }
